@@ -53,6 +53,35 @@
             filter: drop-shadow(0 0 30px rgba(255, 154, 86, 0.3));
         }
 
+        /* Click to enter hint */
+        .click-hint {
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
+            font-weight: 300;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            animation: subtle-pulse 2s ease-in-out infinite;
+        }
+
+        /* Show the hint after delay */
+        .click-hint.show {
+            opacity: 1;
+        }
+
+        /* Subtle pulsing for the hint text */
+        @keyframes subtle-pulse {
+            0%, 100% { 
+                opacity: 0.6; 
+            }
+            50% { 
+                opacity: 0.9; 
+            }
+        }
+
         /* Pulsing animation for logo */
         .splash-logo.pulsing {
             animation: pulse 1.5s ease-in-out infinite;
@@ -369,6 +398,11 @@
             .splash-logo {
                 width: 250px;
                 height: 250px;
+            }
+            
+            .click-hint {
+                font-size: 1rem;
+                bottom: 15%;
             }
             
             /* Main website mobile adjustments */
