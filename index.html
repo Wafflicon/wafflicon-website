@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags tell the browser how to display the page -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waffle Icon - Software & Merch</title>
+    
+    <!-- CSS styles make the website look good -->
+    <style>
+        /* Reset default browser styles and set up basic styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; /* Makes sizing easier to work with */
+        }
+
+        /* Set up the main font and background */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a56, #ffad56, #ffc556); /* Orange gradient background */
+            min-height: 100vh; /* Full height of the screen */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
+        /* Animated waffle pattern background */
+        .waffle-background {
+            position: fixed; /* Stays in place when scrolling */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1; /* Very transparent so it doesn't interfere with content */
+            z-index: -1; /* Behind all other content */
+            background-image: 
+                repeating-linear-gradient(45deg, #8B4513 0px, #8B4513 20px, transparent 20px, transparent 40px),
+                repeating-linear-gradient(-45deg, #8B4513 0px, #8B4513 20px, transparent 20px, transparent 40px);
+            animation: float 6s ease-in-out infinite; /* Gentle floating animation */
+        }
+
+        /* Animation for the background pattern */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+
+        /* Navigation bar at the top */
+        nav {
+            position: fixed; /* Stays at top when scrolling */
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+            backdrop-filter: blur(10px); /* Blur effect behind nav */
+            z-index: 1000; /* Above all other content */
+            padding: 1rem 0;
+        }
+
+        /* Container for nav items */
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        /* Logo in the nav */
+        .nav-logo {
+            color: #ff9a56;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        /* Navigation links */
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease; /* Smooth color change on hover */
+        }
+
+        .nav-links a:hover {
+            color: #ff9a56;
+        }
+
+        /* Main container for all page content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Individual page sections (hidden by default) */
+        .page {
+            display: none; /* Hidden by default */
+            min-height: 100vh;
+            padding-top: 100px; /* Space for fixed nav */
+        }
+
+        /* Show the active page */
+        .page.active {
+            display: block;
+        }
+
+        /* Homepage specific styles */
+        .homepage {
+            display: flex;
+            align-items: center;
+            min-height: calc(100vh - 100px);
+            gap: 4rem;
+        }
+
+        /* Left side content on homepage */
+        .hero-content {
+            flex: 1;
+            color: white;
+        }
+
+        /* Main heading style */
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Drop shadow for readability */
+            line-height: 1.1;
+        }
+
+        /* Subtitle style */
+        .hero-content h2 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #fff3e0;
+            font-weight: 300;
+        }
+
+        /* Description paragraph */
+        .hero-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: #fff3e0;
+        }
+
+        /* Call-to-action button */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #8B4513, #D2691E);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px); /* Lift effect on hover */
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Right side logo container */
+        .hero-logo {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Logo styling */
+        .logo {
+            width: 300px;
+            height: 300px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23ff9a56" stroke="%23654321" stroke-width="3"/><path d="M50 15 L60 25 L50 35 L40 25 Z" fill="%23ffd700" stroke="%23654321" stroke-width="2"/><g stroke="%23654321" stroke-width="2" fill="none"><line x1="25" y1="35" x2="75" y2="75"/><line x1="75" y1="35" x2="25" y2="75"/><line x1="35" y1="25" x2="35" y2="85"/><line x1="50" y1="25" x2="50" y2="85"/><line x1="65" y1="25" x2="65" y2="85"/><line x1="25" y1="35" x2="85" y2="35"/><line x1="25" y1="50" x2="85" y2="50"/><line x1="25" y1="65" x2="85" y2="65"/></g></svg>') center/contain no-repeat;
+            animation: bounce 2s ease-in-out infinite; /* Bouncing animation */
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+        }
+
+        /* Bouncing animation for logo */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* About page styles */
+        .about-content {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .about-content h1 {
+            color: #8B4513;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .about-content h2 {
+            color: #D2691E;
+            margin: 2rem 0 1rem 0;
+            font-size: 1.8rem;
+        }
+
+        .about-content p {
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        /* Portfolio grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .portfolio-item {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Merch shop styles */
+        .merch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .merch-item {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .merch-item:hover {
+            transform: scale(1.05);
+        }
+
+        .merch-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #D2691E;
+            margin: 1rem 0;
+        }
+
+        .buy-button {
+            background: linear-gradient(45deg, #8B4513, #D2691E);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .buy-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Responsive design for mobile devices */
+        @media (max-width: 768px) {
+            .homepage {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .logo {
+                width: 200px;
+                height: 200px;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated background pattern -->
+    <div class="waffle-background"></div>
+
+    <!-- Navigation bar -->
+    <nav>
+        <div class="nav-container">
+            <!-- Logo/brand name in nav -->
+            <a href="#" class="nav-logo" onclick="showPage('home')">Waffle Icon</a>
+            <!-- Navigation links -->
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" onclick="showPage('about')">About</a></li>
+                <li><a href="#" onclick="showPage('merch')">Merch</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main content container -->
+    <div class="container">
+        
+        <!-- HOME PAGE -->
+        <section id="home" class="page active">
+            <div class="homepage">
+                <!-- Left side: Main content -->
+                <div class="hero-content">
+                    <h1>Waffle Icon</h1>
+                    <h2>Software Development & Creative Merch</h2>
+                    <p>
+                        Welcome to Waffle Icon, where creativity meets technology. We specialize in 
+                        indie game development, custom software solutions, and unique merchandise 
+                        that celebrates the art of code and creativity.
+                    </p>
+                    <p>
+                        From pixel-perfect games to statement tees, we're building a community 
+                        of creators, developers, and dreamers who believe in the power of 
+                        well-crafted digital experiences.
+                    </p>
+                    <a href="#" class="cta-button" onclick="showPage('about')">Learn More</a>
+                </div>
+                
+                <!-- Right side: Logo -->
+                <div class="hero-logo">
+                    <div class="logo"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT/PORTFOLIO PAGE -->
+        <section id="about" class="page">
+            <div class="about-content">
+                <h1>About Waffle Icon</h1>
+                <p>
+                    Founded with a passion for creating meaningful digital experiences, Waffle Icon 
+                    is your go-to destination for indie game development and creative merchandise. 
+                    Our mission is to blend technical excellence with artistic vision.
+                </p>
+
+                <h2>What We Do</h2>
+                <p>
+                    <strong>Software Development:</strong> We craft custom software solutions, 
+                    web applications, and indie games that prioritize user experience and clean code.
+                </p>
+                <p>
+                    <strong>Game Development:</strong> From concept to completion, we develop 
+                    indie games that tell stories and create memorable experiences.
+                </p>
+                <p>
+                    <strong>Merchandise:</strong> Our t-shirt and merch line celebrates developer 
+                    culture with unique designs that speak to the creative coding community.
+                </p>
+
+                <h2>Portfolio</h2>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <h3>Project: Grid Quest</h3>
+                        <p>A puzzle-adventure indie game featuring waffle-grid mechanics and challenging levels. Built with Unity and C#.</p>
+                        <p><strong>Status:</strong> In Development</p>
+                    </div>
+                    <div class="portfolio-item">
+                        <h3>Project: CodeWear Collection</h3>
+                        <p>A line of developer-themed apparel featuring minimalist designs and programming humor.</p>
+                        <p><strong>Status:</strong> Live in Merch Store</p>
+                    </div>
+                    <div class="portfolio-item">
+                        <h3>Project: TaskFlow Web App</h3>
+                        <p>A productivity web application for developers to manage coding projects and track progress.</p>
+                        <p><strong>Status:</strong> Planning Phase</p>
+                    </div>
+                </div>
+
+                <h2>Our Story</h2>
+                <p>
+                    Waffle Icon started as a passion project combining love for programming, 
+                    game development, and creative expression. The waffle/grid concept represents 
+                    the structured yet creative nature of code - organized, purposeful, but 
+                    infinitely customizable.
+                </p>
+            </div>
+        </section>
+
+        <!-- MERCH SHOP PAGE -->
+        <section id="merch" class="page">
+            <div class="about-content">
+                <h1>Merch Store</h1>
+                <p>
+                    Wear your passion for code and creativity. Our merchandise line features 
+                    unique designs that celebrate developer culture and the art of programming.
+                </p>
+
+                <div class="merch-grid">
+                    <div class="merch-item">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect width='200' height='200' fill='%23333'/><text x='100' y='100' text-anchor='middle' dy='.3em' fill='%23ff9a56' font-family='Arial' font-size='24'>Waffle Icon Tee</text></svg>" alt="Waffle Icon T-Shirt">
+                        <h3>Classic Waffle Icon Tee</h3>
+                        <p>Premium cotton t-shirt featuring our iconic waffle grid logo.</p>
+                        <div class="price">$24.99</div>
+                        <button class="buy-button">Coming Soon</button>
+                    </div>
+
+                    <div class="merch-item">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect width='200' height='200' fill='%23000'/><text x='100' y='80' text-anchor='middle' dy='.3em' fill='%23ff9a56' font-family='monospace' font-size='16'>console.log()</text><text x='100' y='120' text-anchor='middle' dy='.3em' fill='%23fff' font-family='monospace' font-size='14'>(&quot;Hello World&quot;)</text></svg>" alt="Developer Hoodie">
+                        <h3>Console.log() Hoodie</h3>
+                        <p>Comfortable hoodie perfect for those late-night coding sessions.</p>
+                        <div class="price">$39.99</div>
+                        <button class="buy-button">Coming Soon</button>
+                    </div>
+
+                    <div class="merch-item">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect width='200' height='200' fill='%23ff9a56'/><circle cx='100' cy='100' r='50' fill='%23333'/><text x='100' y='100' text-anchor='middle' dy='.3em' fill='%23ff9a56' font-family='Arial' font-size='12'>WAFFLE</text></svg>" alt="Logo Sticker Pack">
+                        <h3>Logo Sticker Pack</h3>
+                        <p>Weather-resistant stickers perfect for laptops, water bottles, and more.</p>
+                        <div class="price">$9.99</div>
+                        <button class="buy-button">Coming Soon</button>
+                    </div>
+
+                    <div class="merch-item">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect width='200' height='200' fill='%23fff'/><rect x='20' y='50' width='160' height='100' fill='%23333' rx='10'/><text x='100' y='100' text-anchor='middle' dy='.3em' fill='%23ff9a56' font-family='monospace' font-size='12'>git commit -m &quot;life&quot;</text></svg>" alt="Developer Mug">
+                        <h3>Git Commit Mug</h3>
+                        <p>Start your day right with this developer-themed ceramic mug.</p>
+                        <div class="price">$14.99</div>
+                        <button class="buy-button">Coming Soon</button>
+                    </div>
+                </div>
+
+                <p style="text-align: center; margin-top: 2rem; font-style: italic; color: #666;">
+                    🚧 Store launching soon! Follow us for updates on availability.
+                </p>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JavaScript for page navigation and interactivity -->
+    <script>
+        /**
+         * Function to show a specific page and hide others
+         * @param {string} pageId - The ID of the page to show
+         */
+        function showPage(pageId) {
+            // Get all elements with the class 'page'
+            const pages = document.querySelectorAll('.page');
+            
+            // Loop through each page and hide it
+            pages.forEach(page => {
+                page.classList.remove('active'); // Remove the 'active' class
+            });
+            
+            // Show the selected page by adding the 'active' class
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        /**
+         * Smooth scrolling animation when navigation links are clicked
+         */
+        document.addEventListener('DOMContentLoaded', function() {
+            // This code runs when the page is fully loaded
+            console.log('Waffle Icon website loaded successfully!');
+            
+            // Add click event listeners to all navigation links
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault(); // Prevent default link behavior
+                    
+                    // Add a small animation effect when clicking nav links
+                    link.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        link.style.transform = 'scale(1)';
+                    }, 100);
+                });
+            });
+
+            // Add hover effects to CTA button
+            const ctaButton = document.querySelector('.cta-button');
+            if (ctaButton) {
+                ctaButton.addEventListener('mouseenter', function() {
+                    this.style.background = 'linear-gradient(45deg, #A0522D, #F4A460)';
+                });
+                
+                ctaButton.addEventListener('mouseleave', function() {
+                    this.style.background = 'linear-gradient(45deg, #8B4513, #D2691E)';
+                });
+            }
+
+            // Add click handlers for merch buttons
+            const buyButtons = document.querySelectorAll('.buy-button');
+            buyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    alert('Store coming soon! Follow us for updates on when merchandise will be available.');
+                });
+            });
+        });
+
+        /**
+         * Add some interactive effects to the logo
+         */
+        document.addEventListener('DOMContentLoaded', function() {
+            const logo = document.querySelector('.logo');
+            
+            // Make logo clickable with a fun effect
+            logo.addEventListener('click', function() {
+                this.style.animation = 'none'; // Stop current animation
+                this.style.transform = 'rotate(360deg) scale(1.1)';
+                
+                // Reset after animation
+                setTimeout(() => {
+                    this.style.animation = 'bounce 2s ease-in-out infinite';
+                    this.style.transform = '';
+                }, 600);
+            });
+        });
+
+        /**
+         * Simple analytics - log page views (for learning purposes)
+         * In a real website, you'd use proper analytics tools
+         */
+        function logPageView(pageName) {
+            console.log(`Page viewed: ${pageName} at ${new Date().toLocaleTimeString()}`);
+        }
+
+        // Log when pages are shown
+        const originalShowPage = showPage;
+        showPage = function(pageId) {
+            originalShowPage(pageId);
+            logPageView(pageId);
+        };
+    </script>
+</body>
+</html>
