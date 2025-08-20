@@ -405,6 +405,25 @@
                 bottom: 15%;
             }
             
+            /* Navigation adjustments for mobile */
+            .nav-container {
+                padding: 0 1rem;
+            }
+            
+            .nav-links {
+                gap: 0.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .nav-logo-text {
+                font-size: 1.2rem;
+            }
+
+            .nav-logo-img {
+                width: 35px;
+                height: 35px;
+            }
+            
             /* Main website mobile adjustments */
             .homepage {
                 flex-direction: column;
@@ -417,20 +436,7 @@
             }
 
             .waffle-text-logo {
-                max-width: 400px; /* Smaller on mobile */
-            }
-
-            .nav-links {
-                gap: 1rem;
-            }
-
-            .nav-logo-text {
-                font-size: 1.2rem; /* Smaller nav text on mobile */
-            }
-
-            .nav-logo-img {
-                width: 35px;
-                height: 35px;
+                max-width: 400px;
             }
 
             .logo {
@@ -440,6 +446,23 @@
 
             .container {
                 padding: 0 1rem;
+            }
+        }
+
+        /* Extra small mobile devices */
+        @media (max-width: 480px) {
+            .nav-links {
+                gap: 0.3rem;
+                font-size: 0.8rem;
+            }
+            
+            .nav-logo-text {
+                font-size: 1rem;
+            }
+            
+            .nav-logo-img {
+                width: 30px;
+                height: 30px;
             }
         }
     </style>
@@ -456,11 +479,14 @@
                 <img src="assets/WafflLogo.png" alt="WAFFLICON Logo - Waffle with Crown" class="nav-logo-img">
                 <span class="nav-logo-text">WAFFLICON</span>
             </a>
-            <!-- Navigation links -->
+            <!-- Navigation links - matching your flowchart exactly -->
             <ul class="nav-links">
                 <li><a href="#" onclick="showPage('home')">Home</a></li>
                 <li><a href="#" onclick="showPage('about')">About</a></li>
+                <li><a href="#" onclick="showPage('portfolio')">Portfolio</a></li>
+                <li><a href="#" onclick="showPage('games')">Games</a></li>
                 <li><a href="#" onclick="showPage('merch')">Merch</a></li>
+                <li><a href="#" onclick="showPage('contact')">Contact Us</a></li>
             </ul>
         </div>
     </nav>
@@ -496,7 +522,7 @@
             </div>
         </section>
 
-        <!-- ABOUT/PORTFOLIO PAGE -->
+        <!-- ABOUT PAGE (Company info only) -->
         <section id="about" class="page">
             <div class="about-content">
                 <h1>About WAFFLICON</h1>
@@ -520,25 +546,6 @@
                     culture with unique designs that speak to the creative coding community.
                 </p>
 
-                <h2>Portfolio</h2>
-                <div class="portfolio-grid">
-                    <div class="portfolio-item">
-                        <h3>Project: Grid Quest</h3>
-                        <p>A puzzle-adventure indie game featuring waffle-grid mechanics and challenging levels. Built with Unity and C#.</p>
-                        <p><strong>Status:</strong> In Development</p>
-                    </div>
-                    <div class="portfolio-item">
-                        <h3>Project: CodeWear Collection</h3>
-                        <p>A line of developer-themed apparel featuring minimalist designs and programming humor.</p>
-                        <p><strong>Status:</strong> Live in Merch Store</p>
-                    </div>
-                    <div class="portfolio-item">
-                        <h3>Project: TaskFlow Web App</h3>
-                        <p>A productivity web application for developers to manage coding projects and track progress.</p>
-                        <p><strong>Status:</strong> Planning Phase</p>
-                    </div>
-                </div>
-
                 <h2>Our Story</h2>
                 <p>
                     WAFFLICON started as a passion project combining love for programming, 
@@ -546,6 +553,162 @@
                     the structured yet creative nature of code - organized, purposeful, but 
                     infinitely customizable.
                 </p>
+
+                <h2>Our Mission</h2>
+                <p>
+                    We believe in creating digital experiences that matter. Whether it's a game 
+                    that tells a compelling story, software that solves real problems, or 
+                    merchandise that brings the developer community together, everything we 
+                    create is designed with purpose and passion.
+                </p>
+            </div>
+        </section>
+
+        <!-- PORTFOLIO PAGE -->
+        <section id="portfolio" class="page">
+            <div class="about-content">
+                <h1>Portfolio</h1>
+                <p>
+                    Explore our completed and ongoing projects across software development, 
+                    game creation, and digital experiences.
+                </p>
+
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <h3>Project: TaskFlow Web App</h3>
+                        <p>A productivity web application for developers to manage coding projects and track progress. Built with modern JavaScript frameworks and clean UI design.</p>
+                        <p><strong>Technologies:</strong> React, Node.js, MongoDB</p>
+                        <p><strong>Status:</strong> In Development</p>
+                    </div>
+                    
+                    <div class="portfolio-item">
+                        <h3>Project: WAFFLICON Website</h3>
+                        <p>Our company website featuring an interactive splash screen, responsive design, and modern web technologies.</p>
+                        <p><strong>Technologies:</strong> HTML5, CSS3, JavaScript</p>
+                        <p><strong>Status:</strong> Live</p>
+                    </div>
+                    
+                    <div class="portfolio-item">
+                        <h3>Project: CodeWear Collection</h3>
+                        <p>A line of developer-themed apparel featuring minimalist designs and programming humor that resonates with the coding community.</p>
+                        <p><strong>Technologies:</strong> Design, Branding, E-commerce</p>
+                        <p><strong>Status:</strong> Live in Merch Store</p>
+                    </div>
+
+                    <div class="portfolio-item">
+                        <h3>Project: DevTools Suite</h3>
+                        <p>A collection of lightweight developer utilities and tools designed to streamline common programming tasks.</p>
+                        <p><strong>Technologies:</strong> Python, CLI, Web Tools</p>
+                        <p><strong>Status:</strong> Planning Phase</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GAMES PAGE -->
+        <section id="games" class="page">
+            <div class="about-content">
+                <h1>Games</h1>
+                <p>
+                    Discover our indie game projects - from puzzle adventures to interactive experiences 
+                    that blend creativity with compelling gameplay.
+                </p>
+
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <h3>Grid Quest</h3>
+                        <p>A puzzle-adventure indie game featuring waffle-grid mechanics and challenging levels. Navigate through intricate mazes while solving logic puzzles in a beautifully crafted pixel art world.</p>
+                        <p><strong>Platform:</strong> PC, Mobile</p>
+                        <p><strong>Engine:</strong> Unity, C#</p>
+                        <p><strong>Status:</strong> In Development</p>
+                        <p><strong>Release:</strong> Q2 2025 (Planned)</p>
+                    </div>
+                    
+                    <div class="portfolio-item">
+                        <h3>Code Runner</h3>
+                        <p>An endless runner game where players navigate through landscapes made of code. Collect syntax tokens, avoid bugs, and unlock new programming languages as you run.</p>
+                        <p><strong>Platform:</strong> Mobile, Web</p>
+                        <p><strong>Engine:</strong> HTML5, JavaScript</p>
+                        <p><strong>Status:</strong> Concept Phase</p>
+                        <p><strong>Release:</strong> TBD</p>
+                    </div>
+                    
+                    <div class="portfolio-item">
+                        <h3>Waffle Kingdom</h3>
+                        <p>A strategy game where players build and manage their own waffle empire. Balance resources, expand territory, and compete with other kingdoms in this sweet strategy experience.</p>
+                        <p><strong>Platform:</strong> PC, Console</p>
+                        <p><strong>Engine:</strong> Unreal Engine</p>
+                        <p><strong>Status:</strong> Early Planning</p>
+                        <p><strong>Release:</strong> 2026 (Planned)</p>
+                    </div>
+
+                    <div class="portfolio-item">
+                        <h3>Debug Dungeon</h3>
+                        <p>A roguelike dungeon crawler where each room represents a different programming challenge. Battle code monsters, collect debugging tools, and level up your programming skills.</p>
+                        <p><strong>Platform:</strong> PC, Mobile</p>
+                        <p><strong>Engine:</strong> Godot</p>
+                        <p><strong>Status:</strong> Prototype</p>
+                        <p><strong>Release:</strong> Q4 2025 (Planned)</p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: rgba(255,154,86,0.1); border-radius: 15px;">
+                    <h2>🎮 Game Development Updates</h2>
+                    <p>Follow our development journey and get early access to beta releases. Join our community for behind-the-scenes content and developer insights!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT US PAGE -->
+        <section id="contact" class="page">
+            <div class="about-content">
+                <h1>Contact Us</h1>
+                <p>
+                    Ready to collaborate, have a project in mind, or just want to chat about 
+                    games and code? We'd love to hear from you!
+                </p>
+
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <h3>📧 Business Inquiries</h3>
+                        <p>For software development projects, game collaborations, or business partnerships.</p>
+                        <p><strong>Email:</strong> business@wafflicon.com</p>
+                        <p><strong>Response Time:</strong> 24-48 hours</p>
+                    </div>
+                    
+                    <div class="portfolio-item">
+                        <h3>🎮 Game Development</h3>
+                        <p>Questions about our games, beta testing opportunities, or development insights.</p>
+                        <p><strong>Email:</strong> games@wafflicon.com</p>
+                        <p><strong>Response Time:</strong> 48-72 hours</p>
+                    </div>
+                    
+                    <div class="portfolio-item">
+                        <h3>🛍️ Merch & Support</h3>
+                        <p>Questions about merchandise, orders, shipping, or general customer support.</p>
+                        <p><strong>Email:</strong> support@wafflicon.com</p>
+                        <p><strong>Response Time:</strong> 12-24 hours</p>
+                    </div>
+
+                    <div class="portfolio-item">
+                        <h3>🤝 General Contact</h3>
+                        <p>Press inquiries, general questions, or just want to say hello.</p>
+                        <p><strong>Email:</strong> hello@wafflicon.com</p>
+                        <p><strong>Response Time:</strong> 24-48 hours</p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 3rem;">
+                    <h2>Follow Our Journey</h2>
+                    <p>Stay updated with our latest projects, development progress, and company news.</p>
+                    
+                    <div style="margin-top: 2rem;">
+                        <p><strong>🐦 Twitter:</strong> @wafflicon (Coming Soon)</p>
+                        <p><strong>📘 LinkedIn:</strong> WAFFLICON (Coming Soon)</p>
+                        <p><strong>🎮 Discord:</strong> WAFFLICON Community (Coming Soon)</p>
+                        <p><strong>📧 Newsletter:</strong> Sign up for monthly updates (Coming Soon)</p>
+                    </div>
+                </div>
             </div>
         </section>
 
