@@ -3,27 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THREAD CO. - Premium Streetwear & Design</title>
+    <title>WAFFLICON - Software & Creative Studio</title>
     
     <style>
-        /* ========== IMPORTS & VARIABLES ========== */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;900&family=Montserrat:wght@800;900&display=swap');
 
         :root {
-            --primary-black: #0a0a0a;
-            --off-black: #1a1a1a;
-            --dark-gray: #2d2d2d;
-            --medium-gray: #6b6b6b;
-            --light-gray: #e0e0e0;
-            --off-white: #f8f8f8;
-            --accent-red: #ff3939;
-            --accent-blue: #3b82f6;
-            --accent-yellow: #fbbf24;
-            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --black: #0a0a0a;
+            --white: #ffffff;
+            --red: #ff3030;
+            --orange: #ff9a40;
+            --yellow: #ffcc00;
+            --gray: #888888;
+            --light-gray: #f0f0f0;
+            --dark-gray: #333333;
         }
 
-        /* ========== RESET & BASE ========== */
         * {
             margin: 0;
             padding: 0;
@@ -32,9 +27,8 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--off-white);
-            color: var(--primary-black);
-            line-height: 1.6;
+            background: var(--white);
+            color: var(--black);
             overflow-x: hidden;
         }
 
@@ -87,15 +81,18 @@
         .splash-hint {
             position: absolute;
             bottom: 20%;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 1.1rem;
-            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-family: 'Bebas Neue', cursive;
             animation: fadeIn 2s ease-in;
         }
 
         @keyframes fadeIn {
             from { opacity: 0; }
-            to { opacity: 0.4; }
+            to { opacity: 0.8; }
         }
 
         /* ========== MAIN WEBSITE ========== */
@@ -110,257 +107,43 @@
             opacity: 1;
         }
 
-        /* ========== Z-PATTERN LAYOUT STRUCTURE ========== */
-        .z-pattern-container {
-            min-height: 100vh;
-            padding: 2rem;
-            position: relative;
-        }
-
-        /* Top Bar (Z-pattern top horizontal) */
-        .z-top-bar {
+        /* ========== TOP NAVIGATION ========== */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--black);
+            padding: 1rem 2rem;
+            z-index: 1000;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            margin-bottom: 4rem;
-            position: relative;
-            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
-        /* Logo (Top-left) */
-        .brand-logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary-black);
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .brand-logo span {
-            color: var(--accent-red);
-        }
-
-        .brand-logo:hover {
-            transform: translateX(5px);
-        }
-
-        /* Navigation (Top-right) */
-        .main-nav {
+        .nav-items {
             display: flex;
-            gap: 3rem;
-            align-items: center;
+            gap: 2rem;
+            list-style: none;
         }
 
-        .nav-link {
-            color: var(--primary-black);
+        .nav-items a {
+            color: var(--white);
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.95rem;
-            letter-spacing: 0.5px;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
             transition: all 0.3s ease;
             position: relative;
         }
 
-        .nav-link:hover {
-            color: var(--accent-red);
-        }
-
-        .nav-link.active {
-            color: var(--accent-red);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-red);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
-        }
-
-        .cta-button-nav {
-            background: var(--primary-black);
-            color: white;
-            padding: 0.75rem 2rem;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.85rem;
-        }
-
-        .cta-button-nav:hover {
-            background: var(--accent-red);
+        .nav-items a:hover {
+            background: var(--red);
             transform: translateY(-2px);
         }
 
-        /* Diagonal Content Area (Z-pattern diagonal) */
-        .z-diagonal-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            margin-bottom: 4rem;
-            min-height: 50vh;
-        }
-
-        .content-left {
-            animation: slideInLeft 0.8s ease-out;
-        }
-
-        .content-right {
-            animation: slideInRight 0.8s ease-out;
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .hero-title {
-            font-size: clamp(3rem, 6vw, 5rem);
-            font-weight: 900;
-            line-height: 1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -2px;
-        }
-
-        .hero-title .highlight {
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--medium-gray);
-            margin-bottom: 2rem;
-            font-weight: 400;
-        }
-
-        .hero-description {
-            color: var(--dark-gray);
-            margin-bottom: 2rem;
-            max-width: 500px;
-            line-height: 1.8;
-        }
-
-        /* Visual Hero Element */
-        .hero-visual {
-            position: relative;
-            height: 500px;
-            background: var(--gradient-1);
-            border-radius: 20px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
-
-        .hero-visual-text {
-            font-size: 8rem;
-            font-weight: 900;
-            color: white;
-            opacity: 0.1;
-            position: absolute;
-            transform: rotate(-15deg);
-            letter-spacing: -5px;
-        }
-
-        .floating-card {
-            position: absolute;
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .floating-card.card-1 {
-            top: 20%;
-            left: -10%;
-            animation-delay: 0s;
-        }
-
-        .floating-card.card-2 {
-            bottom: 20%;
-            right: -10%;
-            animation-delay: 2s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(3deg); }
-        }
-
-        /* Bottom CTA Area (Z-pattern bottom) */
-        .z-bottom-cta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 3rem;
-            background: var(--primary-black);
-            color: white;
-            border-radius: 20px;
-            margin-top: 4rem;
-        }
-
-        .cta-content h2 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .cta-content p {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .cta-button-main {
-            background: white;
-            color: var(--primary-black);
-            padding: 1rem 3rem;
-            border: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .cta-button-main:hover {
-            background: var(--accent-red);
-            color: white;
-            transform: scale(1.05);
+        .nav-items a.active {
+            background: var(--orange);
         }
 
         /* ========== PAGE SECTIONS ========== */
@@ -374,320 +157,531 @@
             display: block;
         }
 
-        /* ========== CARD LAYOUT PATTERN ========== */
-        .cards-container {
-            padding: 2rem 0;
-        }
-
-        .cards-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .cards-header h1 {
-            font-size: 2.5rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            letter-spacing: -1px;
-        }
-
-        .cards-header p {
-            color: var(--medium-gray);
-            font-size: 1.1rem;
-        }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-            padding: 0;
-        }
-
-        .card {
-            background: white;
-            border: 1px solid var(--light-gray);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: all 0.2s ease;
-            cursor: pointer;
-            height: 100%;
+        /* ========== HOMEPAGE ========== */
+        #home {
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
         }
 
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-            border-color: var(--medium-gray);
+        .home-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 8rem;
+            font-weight: 900;
+            letter-spacing: -3px;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--red), var(--orange), var(--yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(30deg); }
+        }
+
+        .home-menu {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .home-menu-item {
+            background: var(--black);
+            color: var(--white);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .home-menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--red), var(--orange));
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .home-menu-item:hover::before {
+            left: 0;
+        }
+
+        .home-menu-item:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .socials-container {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(255, 154, 64, 0.6);
+            background: var(--orange);
+        }
+
+        /* ========== Z-PATTERN LAYOUT (About & Portfolio) ========== */
+        .z-pattern-page {
+            padding-top: 80px;
+            min-height: 100vh;
+            background: var(--gray);
+        }
+
+        .z-pattern-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .z-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4rem;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+        }
+
+        .z-title {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--black);
+        }
+
+        .z-header-right {
+            max-width: 400px;
+            text-align: right;
+        }
+
+        .z-content {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .z-content h2 {
+            color: var(--red);
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .z-content p {
+            line-height: 1.8;
+            color: var(--dark-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        /* ========== CARD SCROLLING LAYOUT (Games & Merch) ========== */
+        .card-scroll-page {
+            padding-top: 80px;
+            min-height: 100vh;
+            background: var(--gray);
+            position: relative;
+        }
+
+        .card-scroll-container {
+            position: relative;
+            height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .card-scroll-wrapper {
+            display: flex;
+            gap: 2rem;
+            padding: 0 2rem;
+            animation: scroll 30s linear infinite;
+        }
+
+        .card-scroll-wrapper.paused {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .game-card, .merch-card {
+            min-width: 300px;
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .game-card:hover, .merch-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
         }
 
         .card-image {
             width: 100%;
-            height: 280px;
-            background: var(--off-white);
+            height: 350px;
+            background: linear-gradient(135deg, var(--orange), var(--yellow));
             position: relative;
+        }
+
+        .card-info {
+            padding: 1rem;
+            background: var(--white);
+            transition: all 0.3s ease;
+            height: auto;
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .card-image-placeholder {
-            width: 80%;
-            height: 80%;
-            background: linear-gradient(135deg, #ddd, #f0f0f0);
-            border-radius: 8px;
-        }
-
-        .card-content {
-            padding: 1.25rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
         }
 
         .card-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--primary-black);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--black);
             margin-bottom: 0.5rem;
-            line-height: 1.3;
-        }
-
-        .card-description {
-            color: var(--medium-gray);
-            font-size: 0.9rem;
-            line-height: 1.5;
-            margin-bottom: 1rem;
-            flex-grow: 1;
-        }
-
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 1rem;
-            border-top: 1px solid var(--light-gray);
         }
 
         .card-price {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
+            color: var(--red);
             font-weight: 700;
-            color: var(--primary-black);
         }
 
-        .card-action {
-            background: var(--primary-black);
-            color: white;
-            padding: 0.5rem 1.25rem;
-            border: none;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .card-action:hover {
-            background: var(--accent-red);
-        }
-
-        /* Card Badge (Optional) */
-        .card-badge {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 0.35rem 0.75rem;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-radius: 4px;
-        }
-
-        .card-badge.new {
-            background: var(--accent-blue);
-        }
-
-        .card-badge.sale {
-            background: var(--accent-red);
-        }
-
-        /* Filter Bar */
-        .filter-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--light-gray);
-        }
-
-        .filter-options {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .filter-button {
-            background: transparent;
-            border: 1px solid var(--light-gray);
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .filter-button:hover,
-        .filter-button.active {
-            background: var(--primary-black);
-            color: white;
-            border-color: var(--primary-black);
-        }
-
-        .sort-dropdown {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--light-gray);
-            border-radius: 4px;
-            background: white;
-            font-size: 0.9rem;
-            cursor: pointer;
-        }
-
-        /* ========== CONTENT SECTIONS ========== */
-        .content-section {
-            background: white;
-            border-radius: 20px;
-            padding: 3rem;
-            margin: 2rem 0;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 900;
-            margin-bottom: 2rem;
-            letter-spacing: -1px;
-        }
-
-        .section-subtitle {
-            font-size: 1.25rem;
-            color: var(--medium-gray);
-            margin-bottom: 3rem;
-        }
-
-        /* ========== MOBILE MENU ========== */
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .mobile-menu-toggle span {
-            display: block;
-            width: 25px;
-            height: 2px;
-            background: var(--primary-black);
-            margin: 5px 0;
+        .card-description {
+            max-height: 0;
+            opacity: 0;
+            color: var(--dark-gray);
+            line-height: 1.4;
+            margin-top: 0.5rem;
             transition: all 0.3s ease;
         }
 
-        /* ========== RESPONSIVE DESIGN ========== */
-        @media (max-width: 768px) {
-            .z-pattern-container {
-                padding: 1rem;
-            }
-
-            .main-nav {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100vh;
-                background: white;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                z-index: 999;
-            }
-
-            .main-nav.active {
-                display: flex;
-            }
-
-            .mobile-menu-toggle {
-                display: block;
-                z-index: 1000;
-            }
-
-            .z-diagonal-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .hero-title {
-                font-size: 3rem;
-            }
-
-            .hero-visual {
-                height: 300px;
-            }
-
-            .z-bottom-cta {
-                flex-direction: column;
-                text-align: center;
-                gap: 2rem;
-            }
-
-            .splash-logo {
-                font-size: 3rem;
-            }
+        .card-info:hover .card-description {
+            max-height: 200px;
+            opacity: 1;
+            margin-top: 1rem;
         }
 
-        /* ========== FEATURE CARDS ========== */
-        .features-grid {
+        .card-info:hover {
+            padding: 1.5rem;
+            background: var(--light-gray);
+        }
+
+        .scroll-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .scroll-button:hover {
+            background: var(--orange);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .scroll-button.left {
+            left: 2rem;
+        }
+
+        .scroll-button.right {
+            right: 2rem;
+        }
+
+        /* ========== PORTFOLIO SPECIFIC ========== */
+        .coding-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 12px;
+        }
+
+        .code-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .code-icon:hover {
+            transform: scale(1.2);
+            background: var(--red);
+        }
+
+        .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            margin: 3rem 0;
+            margin-top: 2rem;
         }
 
-        .feature-card {
-            padding: 2rem;
-            background: var(--off-white);
-            border-radius: 15px;
+        .portfolio-item {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--orange);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .portfolio-item h3 {
+            color: var(--black);
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .portfolio-item .description {
+            color: var(--gray);
+            font-size: 0.9rem;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
             transition: all 0.3s ease;
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        .portfolio-item:hover .description {
+            max-height: 100px;
+            opacity: 1;
+            margin-top: 0.5rem;
         }
 
-        .feature-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--gradient-1);
-            border-radius: 10px;
+        .portfolio-item:hover h3 {
+            color: var(--red);
+        }
+
+        /* ========== CONTACT PAGE ========== */
+        .contact-page {
+            padding-top: 80px;
+            min-height: 100vh;
+            background: var(--gray);
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            width: 100%;
+        }
+
+        .contact-header {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px 12px 0 0;
+            text-align: center;
+        }
+
+        .contact-header h1 {
+            font-size: 2.5rem;
+            color: var(--black);
             margin-bottom: 1rem;
         }
 
-        .feature-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+        .contact-header p {
+            color: var(--dark-gray);
         }
 
-        .feature-description {
-            color: var(--medium-gray);
-            line-height: 1.6;
+        .contact-form {
+            background: var(--dark-gray);
+            padding: 2rem;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .submit-button {
+            background: var(--red);
+            color: var(--white);
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-button:hover {
+            background: var(--orange);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* ========== PAGE TITLE HEADER ========== */
+        .page-title-header {
+            background: var(--black);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .page-title-header h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+        }
+
+        /* ========== SIZE OPTIONS (MERCH) ========== */
+        .size-options {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            opacity: 0;
+            max-height: 0;
+            transition: all 0.3s ease;
+        }
+
+        .card-info:hover .size-options {
+            opacity: 1;
+            max-height: 50px;
+        }
+
+        .size-btn {
+            padding: 0.25rem 0.5rem;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
+        }
+
+        .size-btn:hover {
+            background: var(--orange);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .home-logo {
+                font-size: 4rem;
+            }
+
+            .home-menu {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .top-nav {
+                padding: 1rem;
+            }
+
+            .nav-items {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .card-scroll-wrapper {
+                animation-duration: 20s;
+            }
+
+            .z-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .z-header-right {
+                text-align: center;
+                margin-top: 1rem;
+            }
+
+            .page-title-header h1 {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
@@ -695,7 +689,7 @@
     <!-- SPLASH SCREEN -->
     <div class="splash-screen" id="splashScreen">
         <img src="assets/WafflLogo.png" alt="WAFFLICON Logo" class="splash-logo" id="splashLogo">
-        <p class="splash-hint">Click to enter</p>
+        <p class="splash-hint">Click to enter.</p>
     </div>
 
     <!-- MAIN WEBSITE -->
@@ -703,368 +697,279 @@
         
         <!-- HOME PAGE -->
         <section id="home" class="page active">
-            <div class="z-pattern-container">
-                <!-- Z-Pattern Top Bar -->
-                <div class="z-top-bar">
-                    <a href="#" class="brand-logo" onclick="showPage('home')">
-                        THREAD<span>CO.</span>
-                    </a>
-                    <nav class="main-nav" id="mainNav">
-                        <a href="#" class="nav-link active" onclick="showPage('home')">Home</a>
-                        <a href="#" class="nav-link" onclick="showPage('about')">About</a>
-                        <a href="#" class="nav-link" onclick="showPage('collection')">Collection</a>
-                        <a href="#" class="nav-link" onclick="showPage('drops')">Drops</a>
-                        <a href="#" class="nav-link" onclick="showPage('contact')">Contact</a>
-                        <button class="cta-button-nav" onclick="showPage('collection')">Shop Now</button>
-                    </nav>
-                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                </div>
-
-                <!-- Z-Pattern Diagonal Content -->
-                <div class="z-diagonal-content">
-                    <div class="content-left">
-                        <h1 class="hero-title">
-                            Premium <span class="highlight">Streetwear</span><br>
-                            Redefined
-                        </h1>
-                        <p class="hero-subtitle">Limited drops. Unlimited expression.</p>
-                        <p class="hero-description">
-                            Where art meets apparel. Each piece is crafted with precision, 
-                            designed for those who dare to stand out. Join the movement that's 
-                            redefining street fashion.
-                        </p>
-                        <button class="cta-button-nav" onclick="showPage('collection')">
-                            Explore Collection
-                        </button>
-                    </div>
-                    <div class="content-right">
-                        <div class="hero-visual">
-                            <div class="hero-visual-text">THREAD</div>
-                            <div class="floating-card card-1">
-                                <p style="font-weight: 700; font-size: 1.2rem;">NEW DROP</p>
-                                <p style="color: var(--medium-gray);">Coming Soon</p>
-                            </div>
-                            <div class="floating-card card-2">
-                                <p style="font-weight: 700; font-size: 2rem; color: var(--accent-red);">50K+</p>
-                                <p style="color: var(--medium-gray);">Community</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Z-Pattern Bottom CTA -->
-                <div class="z-bottom-cta">
-                    <div class="cta-content">
-                        <h2>Join the Thread Revolution</h2>
-                        <p>Get exclusive access to limited drops and member-only designs</p>
-                    </div>
-                    <button class="cta-button-main" onclick="showPage('drops')">
-                        View Latest Drop
-                    </button>
-                </div>
+            <h1 class="home-logo">WAFFLICON</h1>
+            <nav class="home-menu">
+                <a href="#" class="home-menu-item" onclick="showPage('about')">About</a>
+                <a href="#" class="home-menu-item" onclick="showPage('games')">Games</a>
+                <a href="#" class="home-menu-item" onclick="showPage('merch')">Merch</a>
+                <a href="#" class="home-menu-item" onclick="showPage('portfolio')">Portfolio</a>
+                <a href="#" class="home-menu-item" onclick="showPage('contact')">Contact</a>
+            </nav>
+            <div class="socials-container">
+                <a href="https://twitter.com" target="_blank" class="social-icon" title="Twitter">X</a>
+                <a href="https://instagram.com" target="_blank" class="social-icon" title="Instagram">IG</a>
+                <a href="https://youtube.com" target="_blank" class="social-icon" title="YouTube">YT</a>
+                <a href="https://discord.com" target="_blank" class="social-icon" title="Discord">DC</a>
+                <a href="https://github.com" target="_blank" class="social-icon" title="GitHub">GH</a>
             </div>
         </section>
 
-        <!-- ABOUT PAGE -->
+        <!-- ABOUT PAGE (Z-Pattern) -->
         <section id="about" class="page">
-            <div class="z-pattern-container">
-                <!-- Z-Pattern Top Bar (Same for all pages) -->
-                <div class="z-top-bar">
-                    <a href="#" class="brand-logo" onclick="showPage('home')">
-                        THREAD<span>CO.</span>
-                    </a>
-                    <nav class="main-nav">
-                        <a href="#" class="nav-link" onclick="showPage('home')">Home</a>
-                        <a href="#" class="nav-link active" onclick="showPage('about')">About</a>
-                        <a href="#" class="nav-link" onclick="showPage('collection')">Collection</a>
-                        <a href="#" class="nav-link" onclick="showPage('drops')">Drops</a>
-                        <a href="#" class="nav-link" onclick="showPage('contact')">Contact</a>
-                        <button class="cta-button-nav" onclick="showPage('collection')">Shop Now</button>
-                    </nav>
-                </div>
-
-                <!-- Z-Pattern Diagonal Content -->
-                <div class="z-diagonal-content">
-                    <div class="content-left">
-                        <h1 class="hero-title">
-                            The <span class="highlight">Story</span><br>
-                            Behind Thread
-                        </h1>
-                        <p class="hero-subtitle">Born from creativity. Built for expression.</p>
-                        <p class="hero-description">
-                            Founded in 2023, Thread Co. emerged from a simple belief: clothing should be 
-                            more than fabric—it should be a canvas for self-expression. We blend premium 
-                            materials with cutting-edge design to create pieces that speak without words.
-                        </p>
-                    </div>
-                    <div class="content-right">
-                        <div class="content-section">
-                            <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Our Mission</h3>
-                            <p style="color: var(--dark-gray); line-height: 1.8;">
-                                To democratize high-end streetwear while maintaining exclusivity through 
-                                limited drops and premium quality. Every Thread piece is a statement of 
-                                individuality and artistic expression.
-                            </p>
-                            <div class="features-grid" style="margin-top: 2rem;">
-                                <div style="text-align: center;">
-                                    <p style="font-size: 2rem; font-weight: 900; color: var(--accent-red);">100%</p>
-                                    <p style="color: var(--medium-gray);">Organic Cotton</p>
-                                </div>
-                                <div style="text-align: center;">
-                                    <p style="font-size: 2rem; font-weight: 900; color: var(--accent-blue);">500+</p>
-                                    <p style="color: var(--medium-gray);">Limited Pieces</p>
-                                </div>
-                                <div style="text-align: center;">
-                                    <p style="font-size: 2rem; font-weight: 900;">12</p>
-                                    <p style="color: var(--medium-gray);">Monthly Drops</p>
-                                </div>
-                            </div>
+            <!-- Top Navigation -->
+            <nav class="top-nav">
+                <ul class="nav-items">
+                    <li><a href="#" onclick="showPage('home')">Home</a></li>
+                    <li><a href="#" onclick="showPage('about')" class="active">About</a></li>
+                    <li><a href="#" onclick="showPage('games')">Games</a></li>
+                    <li><a href="#" onclick="showPage('merch')">Merch</a></li>
+                    <li><a href="#" onclick="showPage('portfolio')">Portfolio</a></li>
+                    <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="z-pattern-page">
+                <div class="z-pattern-container">
+                    <div class="z-header">
+                        <h1 class="z-title">About Page</h1>
+                        <div class="z-header-right">
+                            <p>What the business does: bullet points</p>
                         </div>
                     </div>
-                </div>
-
-                <!-- Z-Pattern Bottom CTA -->
-                <div class="z-bottom-cta">
-                    <div class="cta-content">
-                        <h2>Ready to Make a Statement?</h2>
-                        <p>Explore our latest collection of premium streetwear</p>
+                    
+                    <div class="z-content">
+                        <p>Full write about the business, breakdown of founders with pictures and quotes, timeline of the company, etc.</p>
+                        
+                        <h2>Our Mission</h2>
+                        <p>WAFFLICON is dedicated to creating innovative software solutions, engaging games, and unique merchandise that celebrates creativity and technology. We believe in building experiences that matter.</p>
+                        
+                        <h2>What We Do</h2>
+                        <p>• Custom Software Development<br>
+                        • Indie Game Creation<br>
+                        • Creative Merchandise Design<br>
+                        • Digital Experience Consulting</p>
+                        
+                        <h2>Our Story</h2>
+                        <p>Founded with a passion for blending art and technology, WAFFLICON represents the structured yet creative nature of development - like a waffle grid, organized but infinitely customizable.</p>
                     </div>
-                    <button class="cta-button-main" onclick="showPage('collection')">
-                        Shop Collection
-                    </button>
                 </div>
             </div>
         </section>
 
-        <!-- COLLECTION PAGE -->
-        <section id="collection" class="page">
-            <div class="z-pattern-container">
-                <!-- Z-Pattern Top Bar -->
-                <div class="z-top-bar">
-                    <a href="#" class="brand-logo" onclick="showPage('home')">
-                        THREAD<span>CO.</span>
-                    </a>
-                    <nav class="main-nav">
-                        <a href="#" class="nav-link" onclick="showPage('home')">Home</a>
-                        <a href="#" class="nav-link" onclick="showPage('about')">About</a>
-                        <a href="#" class="nav-link active" onclick="showPage('collection')">Collection</a>
-                        <a href="#" class="nav-link" onclick="showPage('drops')">Drops</a>
-                        <a href="#" class="nav-link" onclick="showPage('contact')">Contact</a>
-                        <button class="cta-button-nav" onclick="showPage('collection')">Shop Now</button>
-                    </nav>
-                </div>
-
-                <!-- Collection Header -->
-                <div class="cards-header">
-                    <h1>Shop Collection</h1>
-                    <p>Premium streetwear designed for those who dare to stand out</p>
-                </div>
-
-                <!-- Filter Bar -->
-                <div class="filter-bar">
-                    <div class="filter-options">
-                        <button class="filter-button active">All</button>
-                        <button class="filter-button">T-Shirts</button>
-                        <button class="filter-button">Hoodies</button>
-                        <button class="filter-button">Accessories</button>
-                        <button class="filter-button">Limited</button>
+        <!-- GAMES PAGE (Card Scroll) -->
+        <section id="games" class="page">
+            <nav class="top-nav">
+                <ul class="nav-items">
+                    <li><a href="#" onclick="showPage('home')">Home</a></li>
+                    <li><a href="#" onclick="showPage('about')">About</a></li>
+                    <li><a href="#" onclick="showPage('games')" class="active">Games</a></li>
+                    <li><a href="#" onclick="showPage('merch')">Merch</a></li>
+                    <li><a href="#" onclick="showPage('portfolio')">Portfolio</a></li>
+                    <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="page-title-header">
+                <h1>Games</h1>
+            </div>
+            
+            <div class="card-scroll-page">
+                <div class="card-scroll-container">
+                    <button class="scroll-button left" onclick="scrollCards('left', 'games')">‹</button>
+                    <button class="scroll-button right" onclick="scrollCards('right', 'games')">›</button>
+                    
+                    <div class="card-scroll-wrapper" id="gamesScroll">
+                        <!-- Duplicate cards for infinite scroll effect -->
+                        <div class="game-card">
+                            <div class="card-image"></div>
+                            <div class="card-info">
+                                <h3 class="card-title">Grid Quest</h3>
+                                <p class="card-description">A puzzle-adventure game featuring waffle-grid mechanics and challenging levels.</p>
+                            </div>
+                        </div>
+                        <div class="game-card">
+                            <div class="card-image" style="background: linear-gradient(135deg, #667eea, #764ba2);"></div>
+                            <div class="card-info">
+                                <h3 class="card-title">Code Runner</h3>
+                                <p class="card-description">Navigate through landscapes made of code in this endless runner.</p>
+                            </div>
+                        </div>
+                        <div class="game-card">
+                            <div class="card-image" style="background: linear-gradient(135deg, #f093fb, #f5576c);"></div>
+                            <div class="card-info">
+                                <h3 class="card-title">Waffle Kingdom</h3>
+                                <p class="card-description">Build and manage your own waffle empire in this strategy game.</p>
+                            </div>
+                        </div>
+                        <div class="game-card">
+                            <div class="card-image" style="background: linear-gradient(135deg, #4facfe, #00f2fe);"></div>
+                            <div class="card-info">
+                                <h3 class="card-title">Debug Dungeon</h3>
+                                <p class="card-description">A roguelike where each room is a programming challenge.</p>
+                            </div>
+                        </div>
+                        <!-- Duplicate set for seamless loop -->
+                        <div class="game-card">
+                            <div class="card-image"></div>
+                            <div class="card-info">
+                                <h3 class="card-title">Grid Quest</h3>
+                                <p class="card-description">A puzzle-adventure game featuring waffle-grid mechanics and challenging levels.</p>
+                            </div>
+                        </div>
+                        <div class="game-card">
+                            <div class="card-image" style="background: linear-gradient(135deg, #667eea, #764ba2);"></div>
+                            <div class="card-info">
+                                <h3 class="card-title">Code Runner</h3>
+                                <p class="card-description">Navigate through landscapes made of code in this endless runner.</p>
+                            </div>
+                        </div>
+                        <div class="game-card">
+                            <div class="card-image" style="background: linear-gradient(135deg, #f093fb, #f5576c);"></div>
+                            <div class="card-info">
+                                <h3 class="card-title">Waffle Kingdom</h3>
+                                <p class="card-description">Build and manage your own waffle empire in this strategy game.</p>
+                            </div>
+                        </div>
+                        <div class="game-card">
+                            <div class="card-image" style="background: linear-gradient(135deg, #4facfe, #00f2fe);"></div>
+                            <div class="card-info">
+                                <h3 class="card-title">Debug Dungeon</h3>
+                                <p class="card-description">A roguelike where each room is a programming challenge.</p>
+                            </div>
+                        </div>
                     </div>
-                    <select class="sort-dropdown">
-                        <option>Sort by: Featured</option>
-                        <option>Price: Low to High</option>
-                        <option>Price: High to Low</option>
-                        <option>Newest First</option>
-                    </select>
                 </div>
+            </div>
+        </section>
 
-                <!-- Cards Grid Layout -->
-                <div class="cards-container">
-                    <div class="cards-grid">
-                        <!-- Card 1 -->
-                        <div class="card">
-                            <div class="card-image">
-                                <span class="card-badge new">New</span>
-                                <div class="card-image-placeholder" style="background: linear-gradient(135deg, #667eea, #764ba2);"></div>
-                            </div>
-                            <div class="card-content">
-                                <h3 class="card-title">Signature Oversized Tee</h3>
-                                <p class="card-description">Premium 100% organic cotton with our iconic logo embroidery</p>
-                                <div class="card-footer">
-                                    <span class="card-price">$89</span>
-                                    <button class="card-action">Add to Cart</button>
+        <!-- MERCH PAGE (Card Scroll) -->
+        <section id="merch" class="page">
+            <nav class="top-nav">
+                <ul class="nav-items">
+                    <li><a href="#" onclick="showPage('home')">Home</a></li>
+                    <li><a href="#" onclick="showPage('about')">About</a></li>
+                    <li><a href="#" onclick="showPage('games')">Games</a></li>
+                    <li><a href="#" onclick="showPage('merch')" class="active">Merch</a></li>
+                    <li><a href="#" onclick="showPage('portfolio')">Portfolio</a></li>
+                    <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="page-title-header">
+                <h1>Merch Store</h1>
+            </div>
+            
+            <div class="card-scroll-page">
+                <div class="card-scroll-container">
+                    <button class="scroll-button left" onclick="scrollCards('left', 'merch')">‹</button>
+                    <button class="scroll-button right" onclick="scrollCards('right', 'merch')">›</button>
+                    
+                    <div class="card-scroll-wrapper" id="merchScroll">
+                        <!-- Merch cards with prices -->
+                        <div class="merch-card">
+                            <div class="card-image" style="background: linear-gradient(135deg, #ee9ca7, #ffdde1);"></div>
+                            <div class="card-info">
+                                <h3 class="card-title">WAFFLICON Classic Tee</h3>
+                                <p class="card-price">$24.99</p>
+                                <p class="card-description">Premium cotton t-shirt with our iconic logo.</p>
+                                <div class="size-options">
+                                    <button class="size-btn">S</button>
+                                    <button class="size-btn">M</button>
+                                    <button class="size-btn">L</button>
+                                    <button class="size-btn">XL</button>
+                                    <button class="size-btn">XXL</button>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Card 2 -->
-                        <div class="card">
-                            <div class="card-image">
-                                <div class="card-image-placeholder" style="background: linear-gradient(135deg, #f093fb, #f5576c);"></div>
-                            </div>
-                            <div class="card-content">
-                                <h3 class="card-title">Abstract Print Hoodie</h3>
-                                <p class="card-description">Heavy-weight cotton blend with all-over print design</p>
-                                <div class="card-footer">
-                                    <span class="card-price">$149</span>
-                                    <button class="card-action">Add to Cart</button>
+                        <div class="merch-card">
+                            <div class="card-image" style="background: linear-gradient(135deg, #a8edea, #fed6e3);"></div>
+                            <div class="card-info">
+                                <h3 class="card-title">Code Hoodie</h3>
+                                <p class="card-price">$49.99</p>
+                                <p class="card-description">Comfortable hoodie for those coding sessions.</p>
+                                <div class="size-options">
+                                    <button class="size-btn">S</button>
+                                    <button class="size-btn">M</button>
+                                    <button class="size-btn">L</button>
+                                    <button class="size-btn">XL</button>
+                                    <button class="size-btn">XXL</button>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Card 3 -->
-                        <div class="card">
-                            <div class="card-image">
-                                <span class="card-badge sale">Sale</span>
-                                <div class="card-image-placeholder" style="background: linear-gradient(135deg, #4facfe, #00f2fe);"></div>
-                            </div>
-                            <div class="card-content">
-                                <h3 class="card-title">Tech Mesh Jersey</h3>
-                                <p class="card-description">Breathable mesh fabric with moisture-wicking technology</p>
-                                <div class="card-footer">
-                                    <span class="card-price">$129</span>
-                                    <button class="card-action">Add to Cart</button>
+                        <div class="merch-card">
+                            <div class="card-image" style="background: linear-gradient(135deg, #d299c2, #fef9d7);"></div>
+                            <div class="card-info">
+                                <h3 class="card-title">Developer Cap</h3>
+                                <p class="card-price">$19.99</p>
+                                <p class="card-description">Adjustable cap with embroidered logo.</p>
+                                <div class="size-options">
+                                    <button class="size-btn">One Size</button>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Card 4 -->
-                        <div class="card">
-                            <div class="card-image">
-                                <div class="card-image-placeholder" style="background: linear-gradient(135deg, #fa709a, #fee140);"></div>
-                            </div>
-                            <div class="card-content">
-                                <h3 class="card-title">Gradient Long Sleeve</h3>
-                                <p class="card-description">Soft cotton blend with sunset gradient pattern</p>
-                                <div class="card-footer">
-                                    <span class="card-price">$119</span>
-                                    <button class="card-action">Add to Cart</button>
+                        <div class="merch-card">
+                            <div class="card-image" style="background: linear-gradient(135deg, #89f7fe, #66a6ff);"></div>
+                            <div class="card-info">
+                                <h3 class="card-title">Waffle Mug</h3>
+                                <p class="card-price">$14.99</p>
+                                <p class="card-description">Ceramic mug for your morning coffee.</p>
+                                <div class="size-options">
+                                    <button class="size-btn">11oz</button>
+                                    <button class="size-btn">15oz</button>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Card 5 -->
-                        <div class="card">
-                            <div class="card-image">
-                                <div class="card-image-placeholder" style="background: linear-gradient(135deg, #a8edea, #fed6e3);"></div>
-                            </div>
-                            <div class="card-content">
-                                <h3 class="card-title">Cloud Nine Crop Top</h3>
-                                <p class="card-description">Lightweight cotton with cloud-inspired graphics</p>
-                                <div class="card-footer">
-                                    <span class="card-price">$69</span>
-                                    <button class="card-action">Add to Cart</button>
+                        <!-- Duplicate for seamless scroll -->
+                        <div class="merch-card">
+                            <div class="card-image" style="background: linear-gradient(135deg, #ee9ca7, #ffdde1);"></div>
+                            <div class="card-info">
+                                <h3 class="card-title">WAFFLICON Classic Tee</h3>
+                                <p class="card-price">$24.99</p>
+                                <p class="card-description">Premium cotton t-shirt with our iconic logo.</p>
+                                <div class="size-options">
+                                    <button class="size-btn">S</button>
+                                    <button class="size-btn">M</button>
+                                    <button class="size-btn">L</button>
+                                    <button class="size-btn">XL</button>
+                                    <button class="size-btn">XXL</button>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Card 6 -->
-                        <div class="card">
-                            <div class="card-image">
-                                <span class="card-badge">Limited</span>
-                                <div class="card-image-placeholder" style="background: linear-gradient(135deg, #ffecd2, #fcb69f);"></div>
-                            </div>
-                            <div class="card-content">
-                                <h3 class="card-title">Desert Rose Collection</h3>
-                                <p class="card-description">Limited edition piece from our exclusive capsule</p>
-                                <div class="card-footer">
-                                    <span class="card-price">$159</span>
-                                    <button class="card-action">Add to Cart</button>
+                        <div class="merch-card">
+                            <div class="card-image" style="background: linear-gradient(135deg, #a8edea, #fed6e3);"></div>
+                            <div class="card-info">
+                                <h3 class="card-title">Code Hoodie</h3>
+                                <p class="card-price">$49.99</p>
+                                <p class="card-description">Comfortable hoodie for those coding sessions.</p>
+                                <div class="size-options">
+                                    <button class="size-btn">S</button>
+                                    <button class="size-btn">M</button>
+                                    <button class="size-btn">L</button>
+                                    <button class="size-btn">XL</button>
+                                    <button class="size-btn">XXL</button>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Card 7 -->
-                        <div class="card">
-                            <div class="card-image">
-                                <div class="card-image-placeholder" style="background: linear-gradient(135deg, #d299c2, #fef9d7);"></div>
-                            </div>
-                            <div class="card-content">
-                                <h3 class="card-title">Golden Hour Tee</h3>
-                                <p class="card-description">Vintage wash with golden hour inspired graphics</p>
-                                <div class="card-footer">
-                                    <span class="card-price">$79</span>
-                                    <button class="card-action">Add to Cart</button>
+                        <div class="merch-card">
+                            <div class="card-image" style="background: linear-gradient(135deg, #d299c2, #fef9d7);"></div>
+                            <div class="card-info">
+                                <h3 class="card-title">Developer Cap</h3>
+                                <p class="card-price">$19.99</p>
+                                <p class="card-description">Adjustable cap with embroidered logo.</p>
+                                <div class="size-options">
+                                    <button class="size-btn">One Size</button>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Card 8 -->
-                        <div class="card">
-                            <div class="card-image">
-                                <div class="card-image-placeholder" style="background: linear-gradient(135deg, #89f7fe, #66a6ff);"></div>
-                            </div>
-                            <div class="card-content">
-                                <h3 class="card-title">Ocean Wave Hoodie</h3>
-                                <p class="card-description">Premium hoodie with wave pattern embroidery</p>
-                                <div class="card-footer">
-                                    <span class="card-price">$139</span>
-                                    <button class="card-action">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Card 9 -->
-                        <div class="card">
-                            <div class="card-image">
-                                <span class="card-badge new">New</span>
-                                <div class="card-image-placeholder" style="background: linear-gradient(135deg, #fddb92, #d1fdff);"></div>
-                            </div>
-                            <div class="card-content">
-                                <h3 class="card-title">Sunrise Essential</h3>
-                                <p class="card-description">Classic fit with sunrise gradient detailing</p>
-                                <div class="card-footer">
-                                    <span class="card-price">$89</span>
-                                    <button class="card-action">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Card 10 -->
-                        <div class="card">
-                            <div class="card-image">
-                                <div class="card-image-placeholder" style="background: linear-gradient(135deg, #e0c3fc, #8ec5fc);"></div>
-                            </div>
-                            <div class="card-content">
-                                <h3 class="card-title">Dreamscape Long Sleeve</h3>
-                                <p class="card-description">Soft cotton with dreamy pastel graphics</p>
-                                <div class="card-footer">
-                                    <span class="card-price">$109</span>
-                                    <button class="card-action">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Card 11 -->
-                        <div class="card">
-                            <div class="card-image">
-                                <div class="card-image-placeholder" style="background: linear-gradient(135deg, #f6d365, #fda085);"></div>
-                            </div>
-                            <div class="card-content">
-                                <h3 class="card-title">Sunset Boulevard Tee</h3>
-                                <p class="card-description">Relaxed fit with vintage sunset print</p>
-                                <div class="card-footer">
-                                    <span class="card-price">$75</span>
-                                    <button class="card-action">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Card 12 -->
-                        <div class="card">
-                            <div class="card-image">
-                                <span class="card-badge sale">Sale</span>
-                                <div class="card-image-placeholder" style="background: linear-gradient(135deg, #43e97b, #38f9d7);"></div>
-                            </div>
-                            <div class="card-content">
-                                <h3 class="card-title">Neon Nights Collection</h3>
-                                <p class="card-description">Reflective details perfect for night events</p>
-                                <div class="card-footer">
-                                    <span class="card-price">$99</span>
-                                    <button class="card-action">Add to Cart</button>
+                        <div class="merch-card">
+                            <div class="card-image" style="background: linear-gradient(135deg, #89f7fe, #66a6ff);"></div>
+                            <div class="card-info">
+                                <h3 class="card-title">Waffle Mug</h3>
+                                <p class="card-price">$14.99</p>
+                                <p class="card-description">Ceramic mug for your morning coffee.</p>
+                                <div class="size-options">
+                                    <button class="size-btn">11oz</button>
+                                    <button class="size-btn">15oz</button>
                                 </div>
                             </div>
                         </div>
@@ -1073,174 +978,126 @@
             </div>
         </section>
 
-        <!-- DROPS PAGE -->
-        <section id="drops" class="page">
-            <div class="z-pattern-container">
-                <!-- Z-Pattern Top Bar -->
-                <div class="z-top-bar">
-                    <a href="#" class="brand-logo" onclick="showPage('home')">
-                        THREAD<span>CO.</span>
-                    </a>
-                    <nav class="main-nav">
-                        <a href="#" class="nav-link" onclick="showPage('home')">Home</a>
-                        <a href="#" class="nav-link" onclick="showPage('about')">About</a>
-                        <a href="#" class="nav-link" onclick="showPage('collection')">Collection</a>
-                        <a href="#" class="nav-link active" onclick="showPage('drops')">Drops</a>
-                        <a href="#" class="nav-link" onclick="showPage('contact')">Contact</a>
-                        <button class="cta-button-nav">Set Reminder</button>
-                    </nav>
-                </div>
-
-                <!-- Z-Pattern Diagonal Content -->
-                <div class="z-diagonal-content">
-                    <div class="content-left">
-                        <h1 class="hero-title">
-                            Next <span class="highlight">Drop</span><br>
-                            Coming Soon
-                        </h1>
-                        <p class="hero-subtitle">Drop 024 - "Midnight Tokyo"</p>
-                        <p class="hero-description">
-                            Inspired by the neon-lit streets of Tokyo after dark. This limited capsule 
-                            features reflective materials, bold graphics, and our signature oversized fits. 
-                            Only 500 pieces available worldwide.
-                        </p>
-                        <div style="margin-top: 2rem;">
-                            <p style="font-size: 2rem; font-weight: 900; margin-bottom: 0.5rem;">72:14:32</p>
-                            <p style="color: var(--medium-gray);">Hours : Minutes : Seconds</p>
+        <!-- PORTFOLIO PAGE (Z-Pattern) -->
+        <section id="portfolio" class="page">
+            <nav class="top-nav">
+                <ul class="nav-items">
+                    <li><a href="#" onclick="showPage('home')">Home</a></li>
+                    <li><a href="#" onclick="showPage('about')">About</a></li>
+                    <li><a href="#" onclick="showPage('games')">Games</a></li>
+                    <li><a href="#" onclick="showPage('merch')">Merch</a></li>
+                    <li><a href="#" onclick="showPage('portfolio')" class="active">Portfolio</a></li>
+                    <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="z-pattern-page">
+                <div class="z-pattern-container">
+                    <div class="z-header">
+                        <h1 class="z-title">Portfolio Page</h1>
+                        <div class="z-header-right">
+                            <p>Educational History<br>Personal Quote</p>
                         </div>
                     </div>
-                    <div class="content-right">
-                        <div class="hero-visual" style="background: linear-gradient(135deg, #000, #333);">
-                            <div class="hero-visual-text">024</div>
-                            <div class="floating-card" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
-                                <p style="font-weight: 700; font-size: 1.5rem;">500</p>
-                                <p style="color: var(--medium-gray);">Pieces Only</p>
-                            </div>
-                        </div>
+                    
+                    <div class="coding-icons">
+                        <div class="code-icon" title="JavaScript">JS</div>
+                        <div class="code-icon" title="Python">PY</div>
+                        <div class="code-icon" title="React">RE</div>
+                        <div class="code-icon" title="Node.js">NO</div>
+                        <div class="code-icon" title="HTML/CSS">HC</div>
+                        <div class="code-icon" title="C++">C+</div>
                     </div>
-                </div>
-
-                <!-- Previous Drops -->
-                <div class="content-section">
-                    <h2 class="section-title">Previous Drops</h2>
-                    <div class="products-grid">
-                        <div class="product-card">
-                            <div class="product-image" style="background: linear-gradient(135deg, #ee9ca7, #ffdde1);">
-                                <span class="product-badge">Sold Out</span>
+                    
+                    <div class="z-content">
+                        <h2>Grid Pattern Programs Portfolio</h2>
+                        <div class="portfolio-grid">
+                            <div class="portfolio-item">
+                                <h3>E-Commerce Platform</h3>
+                                <p class="description">Full-stack web application with payment integration and inventory management.</p>
                             </div>
-                            <div class="product-info">
-                                <h3 class="product-title">Drop 023 - "Desert Rose"</h3>
-                                <p style="color: var(--medium-gray);">Released March 2024</p>
+                            <div class="portfolio-item">
+                                <h3>Mobile Game Engine</h3>
+                                <p class="description">Custom 2D game engine built for mobile platforms with physics simulation.</p>
                             </div>
-                        </div>
-                        <div class="product-card">
-                            <div class="product-image" style="background: linear-gradient(135deg, #a8edea, #fed6e3);">
-                                <span class="product-badge">Sold Out</span>
+                            <div class="portfolio-item">
+                                <h3>Data Analytics Dashboard</h3>
+                                <p class="description">Real-time data visualization tool for business intelligence.</p>
                             </div>
-                            <div class="product-info">
-                                <h3 class="product-title">Drop 022 - "Cloud Nine"</h3>
-                                <p style="color: var(--medium-gray);">Released February 2024</p>
+                            <div class="portfolio-item">
+                                <h3>AI Chat Assistant</h3>
+                                <p class="description">Machine learning powered conversational interface for customer support.</p>
                             </div>
-                        </div>
-                        <div class="product-card">
-                            <div class="product-image" style="background: linear-gradient(135deg, #d299c2, #fef9d7);">
-                                <span class="product-badge">Sold Out</span>
+                            <div class="portfolio-item">
+                                <h3>Portfolio Website</h3>
+                                <p class="description">Responsive portfolio site with dynamic content management.</p>
                             </div>
-                            <div class="product-info">
-                                <h3 class="product-title">Drop 021 - "Golden Hour"</h3>
-                                <p style="color: var(--medium-gray);">Released January 2024</p>
+                            <div class="portfolio-item">
+                                <h3>Task Management App</h3>
+                                <p class="description">Collaborative project management tool with real-time updates.</p>
+                            </div>
+                            <div class="portfolio-item">
+                                <h3>Weather Prediction API</h3>
+                                <p class="description">RESTful API service providing accurate weather forecasting.</p>
+                            </div>
+                            <div class="portfolio-item">
+                                <h3>Social Media Scheduler</h3>
+                                <p class="description">Automated content posting system for multiple platforms.</p>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Z-Pattern Bottom CTA -->
-                <div class="z-bottom-cta">
-                    <div class="cta-content">
-                        <h2>Never Miss a Drop</h2>
-                        <p>Get notified 24 hours before each exclusive release</p>
-                    </div>
-                    <button class="cta-button-main">
-                        Enable Notifications
-                    </button>
                 </div>
             </div>
         </section>
 
         <!-- CONTACT PAGE -->
         <section id="contact" class="page">
-            <div class="z-pattern-container">
-                <!-- Z-Pattern Top Bar -->
-                <div class="z-top-bar">
-                    <a href="#" class="brand-logo" onclick="showPage('home')">
-                        THREAD<span>CO.</span>
-                    </a>
-                    <nav class="main-nav">
-                        <a href="#" class="nav-link" onclick="showPage('home')">Home</a>
-                        <a href="#" class="nav-link" onclick="showPage('about')">About</a>
-                        <a href="#" class="nav-link" onclick="showPage('collection')">Collection</a>
-                        <a href="#" class="nav-link" onclick="showPage('drops')">Drops</a>
-                        <a href="#" class="nav-link active" onclick="showPage('contact')">Contact</a>
-                        <button class="cta-button-nav">Send Message</button>
-                    </nav>
-                </div>
-
-                <!-- Z-Pattern Diagonal Content -->
-                <div class="z-diagonal-content">
-                    <div class="content-left">
-                        <h1 class="hero-title">
-                            Let's <span class="highlight">Connect</span>
-                        </h1>
-                        <p class="hero-subtitle">We're here for you 24/7</p>
-                        <p class="hero-description">
-                            Have a question about our products? Want to collaborate? 
-                            Or just want to say hello? We'd love to hear from you.
-                        </p>
+            <nav class="top-nav">
+                <ul class="nav-items">
+                    <li><a href="#" onclick="showPage('home')">Home</a></li>
+                    <li><a href="#" onclick="showPage('about')">About</a></li>
+                    <li><a href="#" onclick="showPage('games')">Games</a></li>
+                    <li><a href="#" onclick="showPage('merch')">Merch</a></li>
+                    <li><a href="#" onclick="showPage('portfolio')">Portfolio</a></li>
+                    <li><a href="#" onclick="showPage('contact')" class="active">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="contact-page">
+                <div class="contact-container">
+                    <div class="contact-header">
+                        <h1>Contact Us Page</h1>
+                        <p>Bullet point business info<br>Short message about the contact us page</p>
+                    </div>
+                    
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" placeholder="user's name input" required>
+                        </div>
                         
-                        <div style="margin-top: 3rem;">
-                            <div style="margin-bottom: 2rem;">
-                                <p style="font-weight: 700; margin-bottom: 0.5rem;">Customer Service</p>
-                                <p style="color: var(--medium-gray);">support@threadco.com</p>
-                                <p style="color: var(--medium-gray);">Response within 24 hours</p>
-                            </div>
-                            
-                            <div style="margin-bottom: 2rem;">
-                                <p style="font-weight: 700; margin-bottom: 0.5rem;">Collaborations</p>
-                                <p style="color: var(--medium-gray);">collab@threadco.com</p>
-                                <p style="color: var(--medium-gray);">For partnerships & wholesale</p>
-                            </div>
-                            
-                            <div>
-                                <p style="font-weight: 700; margin-bottom: 0.5rem;">Press Inquiries</p>
-                                <p style="color: var(--medium-gray);">press@threadco.com</p>
-                                <p style="color: var(--medium-gray);">Media kit available</p>
-                            </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" placeholder="user's email input" required>
                         </div>
-                    </div>
-                    <div class="content-right">
-                        <div class="content-section">
-                            <h3 style="font-size: 1.5rem; margin-bottom: 2rem;">Send us a message</h3>
-                            <form style="display: flex; flex-direction: column; gap: 1rem;">
-                                <input type="text" placeholder="Your Name" style="padding: 1rem; border: 2px solid var(--light-gray); border-radius: 8px; font-size: 1rem;">
-                                <input type="email" placeholder="Your Email" style="padding: 1rem; border: 2px solid var(--light-gray); border-radius: 8px; font-size: 1rem;">
-                                <textarea placeholder="Your Message" rows="5" style="padding: 1rem; border: 2px solid var(--light-gray); border-radius: 8px; font-size: 1rem; resize: vertical;"></textarea>
-                                <button type="submit" class="cta-button-nav" style="width: 100%;">Send Message</button>
-                            </form>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject:</label>
+                            <input type="text" id="subject" name="subject" placeholder="user's subject input" required>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Z-Pattern Bottom CTA -->
-                <div class="z-bottom-cta">
-                    <div class="cta-content">
-                        <h2>Join the Thread Community</h2>
-                        <p>Follow us @threadco on all platforms</p>
-                    </div>
-                    <div style="display: flex; gap: 1rem;">
-                        <button class="cta-button-main" style="padding: 1rem 2rem;">Instagram</button>
-                        <button class="cta-button-main" style="padding: 1rem 2rem;">Twitter</button>
-                        <button class="cta-button-main" style="padding: 1rem 2rem;">TikTok</button>
-                    </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message:</label>
+                            <textarea id="message" name="message" placeholder="user's message input" required></textarea>
+                        </div>
+                        
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="copyEmail" name="copyEmail">
+                            <label for="copyEmail">Send Me A Copied Email!</label>
+                        </div>
+                        
+                        <button type="submit" class="submit-button">Send Email</button>
+                    </form>
                 </div>
             </div>
         </section>
@@ -1249,18 +1106,18 @@
 
     <!-- JavaScript -->
     <script>
-        // ========== SPLASH SCREEN HANDLER ==========
+        // ========== SPLASH SCREEN ==========
         document.addEventListener('DOMContentLoaded', function() {
             const splashScreen = document.getElementById('splashScreen');
             const splashLogo = document.getElementById('splashLogo');
             const mainWebsite = document.getElementById('mainWebsite');
 
-            // Click splash logo to enter main website
             splashLogo.addEventListener('click', function() {
                 splashScreen.classList.add('hidden');
                 setTimeout(() => {
                     splashScreen.style.display = 'none';
                     mainWebsite.classList.add('active');
+                    showPage('home');
                 }, 800);
             });
         });
@@ -1279,108 +1136,117 @@
                 selectedPage.classList.add('active');
             }
             
-            // Update active nav links on all navigation bars
-            const navLinks = document.querySelectorAll('.nav-link');
+            // Update active nav links
+            const navLinks = document.querySelectorAll('.nav-items a');
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                // Check if this link corresponds to the active page
-                if (link.textContent.toLowerCase() === pageId || 
-                    (link.textContent === 'Home' && pageId === 'home') ||
-                    (link.textContent === 'About' && pageId === 'about') ||
-                    (link.textContent === 'Collection' && pageId === 'collection') ||
-                    (link.textContent === 'Drops' && pageId === 'drops') ||
-                    (link.textContent === 'Contact' && pageId === 'contact')) {
+                const linkText = link.textContent.toLowerCase();
+                if (linkText === pageId || 
+                    (linkText === 'home' && pageId === 'home') ||
+                    (linkText === 'about' && pageId === 'about') ||
+                    (linkText === 'games' && pageId === 'games') ||
+                    (linkText === 'merch' && pageId === 'merch') ||
+                    (linkText === 'portfolio' && pageId === 'portfolio') ||
+                    (linkText === 'contact' && pageId === 'contact')) {
                     link.classList.add('active');
                 }
             });
             
-            // Scroll to top when changing pages
-            window.scrollTo(0, 0);
-            
-            // Close mobile menu if open
-            const mainNav = document.getElementById('mainNav');
-            if (mainNav && mainNav.classList.contains('active')) {
-                mainNav.classList.remove('active');
+            // Initialize card scrolling for games/merch pages
+            if (pageId === 'games' || pageId === 'merch') {
+                initCardScroll(pageId);
             }
+            
+            window.scrollTo(0, 0);
         }
 
-        // ========== MOBILE MENU TOGGLE ==========
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-            const mainNav = document.getElementById('mainNav');
+        // ========== CARD SCROLLING ==========
+        function initCardScroll(pageType) {
+            const wrapper = document.getElementById(pageType === 'games' ? 'gamesScroll' : 'merchScroll');
+            const cards = wrapper.querySelectorAll(pageType === 'games' ? '.game-card' : '.merch-card');
             
-            if (mobileMenuToggle && mainNav) {
-                mobileMenuToggle.addEventListener('click', function() {
-                    mainNav.classList.toggle('active');
-                });
-            }
-        });
-
-        // ========== SMOOTH SCROLL ==========
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-            });
-        });
-
-        // ========== FORM SUBMISSION ==========
-        document.addEventListener('DOMContentLoaded', function() {
-            const forms = document.querySelectorAll('form');
-            forms.forEach(form => {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    alert('Thank you for your message! We\'ll get back to you within 24 hours.');
-                    form.reset();
-                });
-            });
-        });
-
-        // ========== PRODUCT CARD INTERACTIONS ==========
-        document.addEventListener('DOMContentLoaded', function() {
-            // Card interactions
-            const cards = document.querySelectorAll('.card');
+            // Pause animation when hovering over cards
             cards.forEach(card => {
-                card.addEventListener('click', function(e) {
-                    // If clicking the add to cart button, handle separately
-                    if (e.target.classList.contains('card-action')) {
-                        e.stopPropagation();
-                        alert('Added to cart! (Cart functionality coming soon)');
-                    } else {
-                        alert('Product details page coming soon!');
-                    }
+                card.addEventListener('mouseenter', () => {
+                    wrapper.classList.add('paused');
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    wrapper.classList.remove('paused');
                 });
             });
+        }
 
-            // Filter button interactions
-            const filterButtons = document.querySelectorAll('.filter-button');
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Remove active class from all buttons
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    // Add active class to clicked button
-                    this.classList.add('active');
-                    console.log('Filter by:', this.textContent);
-                });
-            });
+        function scrollCards(direction, type) {
+            const wrapper = document.getElementById(type === 'games' ? 'gamesScroll' : 'merchScroll');
+            const cardWidth = 332; // card width + gap
+            const currentTransform = getComputedStyle(wrapper).transform;
+            let currentX = 0;
+            
+            if (currentTransform !== 'none') {
+                const matrix = new DOMMatrix(currentTransform);
+                currentX = matrix.m41;
+            }
+            
+            if (direction === 'left') {
+                wrapper.style.transform = `translateX(${currentX + cardWidth}px)`;
+            } else {
+                wrapper.style.transform = `translateX(${currentX - cardWidth}px)`;
+            }
+            
+            // Temporarily pause the animation
+            wrapper.style.animation = 'none';
+            setTimeout(() => {
+                wrapper.style.animation = '';
+            }, 50);
+        }
 
-            // Sort dropdown interaction
-            const sortDropdown = document.querySelector('.sort-dropdown');
-            if (sortDropdown) {
-                sortDropdown.addEventListener('change', function() {
-                    console.log('Sort by:', this.value);
+        // ========== CONTACT FORM ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const formData = {
+                        name: document.getElementById('name').value,
+                        email: document.getElementById('email').value,
+                        subject: document.getElementById('subject').value,
+                        message: document.getElementById('message').value,
+                        sendCopy: document.getElementById('copyEmail').checked
+                    };
+                    
+                    // Here you would normally send the email
+                    // For now, we'll just show an alert
+                    alert(`Email would be sent to contact@wafflicon.com\n\nFrom: ${formData.name}\nEmail: ${formData.email}\nSubject: ${formData.subject}\nMessage: ${formData.message}\nSend Copy: ${formData.sendCopy}`);
+                    
+                    // Reset form
+                    contactForm.reset();
                 });
             }
         });
 
-        // ========== CTA BUTTON ANIMATIONS ==========
+        // ========== SOCIAL ICONS HOVER ==========
         document.addEventListener('DOMContentLoaded', function() {
-            const ctaButtons = document.querySelectorAll('.cta-button-main, .cta-button-nav');
-            ctaButtons.forEach(button => {
-                button.addEventListener('mouseenter', function() {
-                    this.style.transform = 'scale(1.05)';
+            const socialIcons = document.querySelectorAll('.social-icon');
+            socialIcons.forEach(icon => {
+                icon.addEventListener('mouseenter', function() {
+                    this.style.animation = 'pulse 0.5s ease-in-out';
                 });
-                button.addEventListener('mouseleave', function() {
-                    this.style.transform = 'scale(1)';
+                
+                icon.addEventListener('mouseleave', function() {
+                    this.style.animation = '';
+                });
+            });
+        });
+
+        // ========== SIZE BUTTON INTERACTIONS ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            const sizeButtons = document.querySelectorAll('.size-btn');
+            sizeButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    alert(`Size ${this.textContent} selected`);
                 });
             });
         });
