@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <title>WAFFLICON - Software & Creative Studio</title>
     
     <style>
@@ -39,6 +41,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
+            height: 100dvh; /* Dynamic viewport height for mobile browsers */
             background: #000000;
             display: flex;
             flex-direction: column;
@@ -135,6 +138,9 @@
             border-radius: 4px;
             transition: all 0.3s ease;
             position: relative;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
         }
 
         .nav-items a:hover {
@@ -144,6 +150,34 @@
 
         .nav-items a.active {
             background: var(--orange);
+        }
+
+        /* Mobile Navigation Toggle */
+        .mobile-nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            min-width: 44px;
+            min-height: 44px;
+        }
+
+        .mobile-nav-close {
+            display: none;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 1002;
+            min-width: 44px;
+            min-height: 44px;
         }
 
         /* ========== PAGE SECTIONS ========== */
@@ -167,7 +201,9 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            height: 100dvh; /* Dynamic viewport height for mobile browsers */
             background: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
+            padding: 2rem;
         }
 
         .home-logo {
@@ -561,8 +597,9 @@
             padding: 0.75rem;
             border: none;
             border-radius: 4px;
-            font-size: 1rem;
+            font-size: 16px; /* Prevents zoom on mobile */
             font-family: 'Inter', sans-serif;
+            -webkit-appearance: none; /* Remove iOS styling */
         }
 
         .form-group textarea {
@@ -649,41 +686,393 @@
         }
 
         /* ========== RESPONSIVE ========== */
-        @media (max-width: 768px) {
+        /* Tablet Styles */
+        @media (max-width: 1024px) {
             .home-logo {
-                font-size: 4rem;
+                font-size: 6rem;
+            }
+
+            .card-scroll-wrapper {
+                gap: 1.5rem;
+            }
+
+            .z-pattern-container {
+                padding: 1.5rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            /* Splash Screen Mobile */
+            .splash-logo {
+                width: 200px;
+                height: 200px;
+            }
+
+            .splash-hint {
+                font-size: 1rem;
+                bottom: 15%;
+            }
+
+            /* Homepage Mobile */
+            .home-logo {
+                font-size: 3.5rem;
+                text-align: center;
+                letter-spacing: -1px;
             }
 
             .home-menu {
                 flex-direction: column;
                 gap: 1rem;
+                width: 90%;
+                max-width: 300px;
             }
 
+            .home-menu-item {
+                width: 100%;
+                text-align: center;
+                padding: 1.2rem 2rem;
+                font-size: 1.1rem;
+                min-height: 50px;
+            }
+
+            /* Top Navigation Mobile */
             .top-nav {
                 padding: 1rem;
+                justify-content: space-between;
+            }
+
+            .mobile-nav-toggle {
+                display: block;
             }
 
             .nav-items {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: var(--black);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
                 gap: 1rem;
-                font-size: 0.9rem;
+                z-index: 1001;
             }
 
-            .card-scroll-wrapper {
-                animation-duration: 20s;
+            .nav-items.mobile-active {
+                display: flex;
             }
 
+            .nav-items a {
+                font-size: 1.2rem;
+                padding: 1rem 2rem;
+                width: 80%;
+                text-align: center;
+                min-height: 50px;
+            }
+
+            .mobile-nav-close {
+                display: block;
+            }
+
+            /* Z-Pattern Mobile */
             .z-header {
                 flex-direction: column;
                 text-align: center;
+                padding: 1.5rem;
+            }
+
+            .z-title {
+                font-size: 2rem;
             }
 
             .z-header-right {
                 text-align: center;
                 margin-top: 1rem;
+                max-width: 100%;
+            }
+
+            .z-content {
+                padding: 1.5rem;
+            }
+
+            /* Card Scroll Mobile */
+            .card-scroll-container {
+                height: calc(100vh - 200px);
+            }
+
+            .card-scroll-wrapper {
+                gap: 1rem;
+                padding: 0 1rem;
+                animation-duration: 20s;
+                -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+                scroll-behavior: smooth;
+            }
+
+            .game-card, .merch-card {
+                min-width: 250px;
+            }
+
+            .card-image {
+                height: 250px;
+            }
+
+            /* Hide scroll buttons on mobile - touch is better */
+            .scroll-button {
+                display: none;
             }
 
             .page-title-header h1 {
                 font-size: 2.5rem;
+            }
+
+            /* Portfolio Mobile */
+            .coding-icons {
+                gap: 1rem;
+                flex-wrap: wrap;
+                padding: 1.5rem;
+            }
+
+            .code-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 0.9rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            /* Contact Form Mobile */
+            .contact-container {
+                padding: 1rem;
+            }
+
+            .contact-header {
+                padding: 1.5rem;
+            }
+
+            .contact-header h1 {
+                font-size: 2rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .submit-button {
+                font-size: 1rem;
+                padding: 1.2rem 2rem;
+                min-height: 50px;
+            }
+
+            /* Socials Mobile */
+            .socials-container {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                max-width: 300px;
+            }
+
+            .social-icon {
+                width: 55px;
+                height: 55px;
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Small Mobile Styles */
+        @media (max-width: 480px) {
+            /* Splash */
+            .splash-logo {
+                width: 150px;
+                height: 150px;
+            }
+
+            .splash-hint {
+                font-size: 0.9rem;
+            }
+
+            /* Homepage */
+            .home-logo {
+                font-size: 2.5rem;
+            }
+
+            #home {
+                padding: 2rem 1rem;
+            }
+
+            .home-menu-item {
+                font-size: 1rem;
+                padding: 1rem 1.5rem;
+            }
+
+            /* Navigation */
+            .nav-items a {
+                font-size: 1.1rem;
+                padding: 0.8rem 1.5rem;
+            }
+
+            /* Page Titles */
+            .page-title-header {
+                padding: 2rem 1rem;
+            }
+
+            .page-title-header h1 {
+                font-size: 2rem;
+            }
+
+            /* Z-Pattern */
+            .z-title {
+                font-size: 1.75rem;
+            }
+
+            .z-content h2 {
+                font-size: 1.5rem;
+            }
+
+            /* Cards */
+            .game-card, .merch-card {
+                min-width: 200px;
+            }
+
+            .card-image {
+                height: 200px;
+            }
+
+            .card-title {
+                font-size: 1rem;
+            }
+
+            .card-price {
+                font-size: 1.2rem;
+            }
+
+            /* Contact */
+            .contact-header h1 {
+                font-size: 1.75rem;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+
+            /* Portfolio */
+            .portfolio-item {
+                padding: 1rem;
+            }
+
+            .portfolio-item h3 {
+                font-size: 1.1rem;
+            }
+
+            /* Coding Icons */
+            .code-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Touch-friendly hover states for mobile */
+        @media (hover: none) and (pointer: coarse) {
+            .home-menu-item:active {
+                transform: scale(0.98);
+                background: var(--orange);
+            }
+
+            .social-icon:active {
+                transform: scale(1.1);
+                background: var(--orange);
+            }
+
+            .nav-items a:active {
+                background: var(--orange);
+            }
+
+            .card-info:active .card-description {
+                max-height: 200px;
+                opacity: 1;
+                margin-top: 1rem;
+            }
+
+            .portfolio-item:active {
+                border-color: var(--orange);
+            }
+
+            .portfolio-item:active .description {
+                max-height: 100px;
+                opacity: 1;
+                margin-top: 0.5rem;
+            }
+        }
+
+        /* Ensure touch targets are at least 44x44px */
+        button, a, input[type="checkbox"], .size-btn {
+            min-width: 44px;
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+        }
+
+        /* Improve form inputs for mobile */
+        input, textarea, select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-radius: 4px;
+        }
+
+        /* Prevent horizontal scroll on mobile */
+        @media (max-width: 768px) {
+            body {
+                overflow-x: hidden;
+            }
+
+            .main-website {
+                overflow-x: hidden;
+            }
+        }
+
+        /* Landscape Mobile Adjustments */
+        @media (max-height: 600px) and (orientation: landscape) {
+            #home {
+                min-height: auto;
+                padding: 2rem;
+            }
+
+            .home-logo {
+                font-size: 3rem;
+            }
+
+            .home-menu {
+                flex-direction: row;
+                flex-wrap: wrap;
+                max-width: 600px;
+            }
+
+            .home-menu-item {
+                width: auto;
+                flex: 1;
+                min-width: 150px;
+            }
+
+            .card-scroll-container {
+                height: calc(100vh - 120px);
+            }
+
+            .contact-page {
+                padding-top: 60px;
             }
         }
     </style>
@@ -721,13 +1110,15 @@
         <section id="about" class="page">
             <!-- Top Navigation -->
             <nav class="top-nav">
-                <ul class="nav-items">
-                    <li><a href="#" onclick="showPage('home'); return false;">Home</a></li>
-                    <li><a href="#" onclick="showPage('about'); return false;" class="active">About</a></li>
-                    <li><a href="#" onclick="showPage('games'); return false;">Games</a></li>
-                    <li><a href="#" onclick="showPage('merch'); return false;">Merch</a></li>
-                    <li><a href="#" onclick="showPage('portfolio'); return false;">Portfolio</a></li>
-                    <li><a href="#" onclick="showPage('contact'); return false;">Contact</a></li>
+                <button class="mobile-nav-toggle" onclick="toggleMobileNav()">☰</button>
+                <ul class="nav-items" id="navItems">
+                    <button class="mobile-nav-close" onclick="toggleMobileNav()">×</button>
+                    <li><a href="#" onclick="showPage('home'); toggleMobileNav(); return false;">Home</a></li>
+                    <li><a href="#" onclick="showPage('about'); toggleMobileNav(); return false;" class="active">About</a></li>
+                    <li><a href="#" onclick="showPage('games'); toggleMobileNav(); return false;">Games</a></li>
+                    <li><a href="#" onclick="showPage('merch'); toggleMobileNav(); return false;">Merch</a></li>
+                    <li><a href="#" onclick="showPage('portfolio'); toggleMobileNav(); return false;">Portfolio</a></li>
+                    <li><a href="#" onclick="showPage('contact'); toggleMobileNav(); return false;">Contact</a></li>
                 </ul>
             </nav>
             
@@ -762,13 +1153,15 @@
         <!-- GAMES PAGE (Card Scroll) -->
         <section id="games" class="page">
             <nav class="top-nav">
-                <ul class="nav-items">
-                    <li><a href="#" onclick="showPage('home'); return false;">Home</a></li>
-                    <li><a href="#" onclick="showPage('about'); return false;">About</a></li>
-                    <li><a href="#" onclick="showPage('games'); return false;" class="active">Games</a></li>
-                    <li><a href="#" onclick="showPage('merch'); return false;">Merch</a></li>
-                    <li><a href="#" onclick="showPage('portfolio'); return false;">Portfolio</a></li>
-                    <li><a href="#" onclick="showPage('contact'); return false;">Contact</a></li>
+                <button class="mobile-nav-toggle" onclick="toggleMobileNav()">☰</button>
+                <ul class="nav-items" id="navItems">
+                    <button class="mobile-nav-close" onclick="toggleMobileNav()">×</button>
+                    <li><a href="#" onclick="showPage('home'); toggleMobileNav(); return false;">Home</a></li>
+                    <li><a href="#" onclick="showPage('about'); toggleMobileNav(); return false;">About</a></li>
+                    <li><a href="#" onclick="showPage('games'); toggleMobileNav(); return false;" class="active">Games</a></li>
+                    <li><a href="#" onclick="showPage('merch'); toggleMobileNav(); return false;">Merch</a></li>
+                    <li><a href="#" onclick="showPage('portfolio'); toggleMobileNav(); return false;">Portfolio</a></li>
+                    <li><a href="#" onclick="showPage('contact'); toggleMobileNav(); return false;">Contact</a></li>
                 </ul>
             </nav>
             
@@ -848,13 +1241,15 @@
         <!-- MERCH PAGE (Card Scroll) -->
         <section id="merch" class="page">
             <nav class="top-nav">
-                <ul class="nav-items">
-                    <li><a href="#" onclick="showPage('home'); return false;">Home</a></li>
-                    <li><a href="#" onclick="showPage('about'); return false;">About</a></li>
-                    <li><a href="#" onclick="showPage('games'); return false;">Games</a></li>
-                    <li><a href="#" onclick="showPage('merch'); return false;" class="active">Merch</a></li>
-                    <li><a href="#" onclick="showPage('portfolio'); return false;">Portfolio</a></li>
-                    <li><a href="#" onclick="showPage('contact'); return false;">Contact</a></li>
+                <button class="mobile-nav-toggle" onclick="toggleMobileNav()">☰</button>
+                <ul class="nav-items" id="navItems">
+                    <button class="mobile-nav-close" onclick="toggleMobileNav()">×</button>
+                    <li><a href="#" onclick="showPage('home'); toggleMobileNav(); return false;">Home</a></li>
+                    <li><a href="#" onclick="showPage('about'); toggleMobileNav(); return false;">About</a></li>
+                    <li><a href="#" onclick="showPage('games'); toggleMobileNav(); return false;">Games</a></li>
+                    <li><a href="#" onclick="showPage('merch'); toggleMobileNav(); return false;" class="active">Merch</a></li>
+                    <li><a href="#" onclick="showPage('portfolio'); toggleMobileNav(); return false;">Portfolio</a></li>
+                    <li><a href="#" onclick="showPage('contact'); toggleMobileNav(); return false;">Contact</a></li>
                 </ul>
             </nav>
             
@@ -984,13 +1379,15 @@
         <!-- PORTFOLIO PAGE (Z-Pattern) -->
         <section id="portfolio" class="page">
             <nav class="top-nav">
-                <ul class="nav-items">
-                    <li><a href="#" onclick="showPage('home'); return false;">Home</a></li>
-                    <li><a href="#" onclick="showPage('about'); return false;">About</a></li>
-                    <li><a href="#" onclick="showPage('games'); return false;">Games</a></li>
-                    <li><a href="#" onclick="showPage('merch'); return false;">Merch</a></li>
-                    <li><a href="#" onclick="showPage('portfolio'); return false;" class="active">Portfolio</a></li>
-                    <li><a href="#" onclick="showPage('contact'); return false;">Contact</a></li>
+                <button class="mobile-nav-toggle" onclick="toggleMobileNav()">☰</button>
+                <ul class="nav-items" id="navItems">
+                    <button class="mobile-nav-close" onclick="toggleMobileNav()">×</button>
+                    <li><a href="#" onclick="showPage('home'); toggleMobileNav(); return false;">Home</a></li>
+                    <li><a href="#" onclick="showPage('about'); toggleMobileNav(); return false;">About</a></li>
+                    <li><a href="#" onclick="showPage('games'); toggleMobileNav(); return false;">Games</a></li>
+                    <li><a href="#" onclick="showPage('merch'); toggleMobileNav(); return false;">Merch</a></li>
+                    <li><a href="#" onclick="showPage('portfolio'); toggleMobileNav(); return false;" class="active">Portfolio</a></li>
+                    <li><a href="#" onclick="showPage('contact'); toggleMobileNav(); return false;">Contact</a></li>
                 </ul>
             </nav>
             
@@ -1056,13 +1453,15 @@
         <!-- CONTACT PAGE -->
         <section id="contact" class="page">
             <nav class="top-nav">
-                <ul class="nav-items">
-                    <li><a href="#" onclick="showPage('home'); return false;">Home</a></li>
-                    <li><a href="#" onclick="showPage('about'); return false;">About</a></li>
-                    <li><a href="#" onclick="showPage('games'); return false;">Games</a></li>
-                    <li><a href="#" onclick="showPage('merch'); return false;">Merch</a></li>
-                    <li><a href="#" onclick="showPage('portfolio'); return false;">Portfolio</a></li>
-                    <li><a href="#" onclick="showPage('contact'); return false;" class="active">Contact</a></li>
+                <button class="mobile-nav-toggle" onclick="toggleMobileNav()">☰</button>
+                <ul class="nav-items" id="navItems">
+                    <button class="mobile-nav-close" onclick="toggleMobileNav()">×</button>
+                    <li><a href="#" onclick="showPage('home'); toggleMobileNav(); return false;">Home</a></li>
+                    <li><a href="#" onclick="showPage('about'); toggleMobileNav(); return false;">About</a></li>
+                    <li><a href="#" onclick="showPage('games'); toggleMobileNav(); return false;">Games</a></li>
+                    <li><a href="#" onclick="showPage('merch'); toggleMobileNav(); return false;">Merch</a></li>
+                    <li><a href="#" onclick="showPage('portfolio'); toggleMobileNav(); return false;">Portfolio</a></li>
+                    <li><a href="#" onclick="showPage('contact'); toggleMobileNav(); return false;" class="active">Contact</a></li>
                 </ul>
             </nav>
             
@@ -1130,6 +1529,26 @@
             });
         });
 
+        // ========== MOBILE NAVIGATION TOGGLE ==========
+        function toggleMobileNav() {
+            const navItems = document.getElementById('navItems');
+            if (navItems) {
+                navItems.classList.toggle('mobile-active');
+            }
+        }
+
+        // Close mobile nav when clicking outside
+        document.addEventListener('click', function(e) {
+            const navItems = document.getElementById('navItems');
+            const mobileToggle = document.querySelector('.mobile-nav-toggle');
+            
+            if (navItems && navItems.classList.contains('mobile-active')) {
+                if (!navItems.contains(e.target) && !mobileToggle.contains(e.target)) {
+                    navItems.classList.remove('mobile-active');
+                }
+            }
+        });
+
         // ========== PAGE NAVIGATION ==========
         function showPage(pageId) {
             console.log('Navigating to:', pageId); // Debug log
@@ -1171,12 +1590,58 @@
             return false; // Prevent default link behavior
         }
 
-        // ========== CARD SCROLLING ==========
+        // ========== CARD SCROLLING WITH TOUCH SUPPORT ==========
         function initCardScroll(pageType) {
             const wrapper = document.getElementById(pageType === 'games' ? 'gamesScroll' : 'merchScroll');
             const cards = wrapper.querySelectorAll(pageType === 'games' ? '.game-card' : '.merch-card');
             
-            // Pause animation when hovering over cards
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+            let startY;
+            
+            // Mouse events
+            wrapper.addEventListener('mouseenter', () => {
+                wrapper.classList.add('paused');
+            });
+            
+            wrapper.addEventListener('mouseleave', () => {
+                wrapper.classList.remove('paused');
+            });
+            
+            // Touch events for mobile swipe
+            wrapper.addEventListener('touchstart', (e) => {
+                isDown = true;
+                wrapper.classList.add('paused');
+                startX = e.touches[0].pageX - wrapper.offsetLeft;
+                startY = e.touches[0].pageY;
+                scrollLeft = wrapper.scrollLeft;
+                wrapper.style.animation = 'none';
+            });
+            
+            wrapper.addEventListener('touchmove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.touches[0].pageX - wrapper.offsetLeft;
+                const y = e.touches[0].pageY;
+                const walkX = (x - startX) * 2;
+                const walkY = Math.abs(y - startY);
+                
+                // Only scroll horizontally if the movement is more horizontal than vertical
+                if (Math.abs(walkX) > walkY) {
+                    wrapper.scrollLeft = scrollLeft - walkX;
+                }
+            });
+            
+            wrapper.addEventListener('touchend', () => {
+                isDown = false;
+                setTimeout(() => {
+                    wrapper.classList.remove('paused');
+                    wrapper.style.animation = '';
+                }, 100);
+            });
+            
+            // Pause animation when hovering over individual cards
             cards.forEach(card => {
                 card.addEventListener('mouseenter', () => {
                     wrapper.classList.add('paused');
@@ -1185,12 +1650,17 @@
                 card.addEventListener('mouseleave', () => {
                     wrapper.classList.remove('paused');
                 });
+                
+                // Touch events for mobile
+                card.addEventListener('touchstart', () => {
+                    wrapper.classList.add('paused');
+                });
             });
         }
 
         function scrollCards(direction, type) {
             const wrapper = document.getElementById(type === 'games' ? 'gamesScroll' : 'merchScroll');
-            const cardWidth = 332; // card width + gap
+            const cardWidth = window.innerWidth < 768 ? 266 : 332; // Adjust for mobile
             const currentTransform = getComputedStyle(wrapper).transform;
             let currentX = 0;
             
@@ -1271,6 +1741,36 @@
                     alert(`Size ${this.textContent} selected`);
                 });
             });
+        });
+
+        // ========== MOBILE OPTIMIZATIONS ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            // Prevent double-tap zoom on buttons
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', function(e) {
+                const now = (new Date()).getTime();
+                if (now - lastTouchEnd <= 300) {
+                    e.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
+            
+            // Add touch feedback to buttons
+            const allButtons = document.querySelectorAll('button, a, .home-menu-item, .social-icon');
+            allButtons.forEach(button => {
+                button.addEventListener('touchstart', function() {
+                    this.style.opacity = '0.7';
+                });
+                button.addEventListener('touchend', function() {
+                    this.style.opacity = '1';
+                });
+            });
+            
+            // Detect if user is on mobile
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            if (isMobile) {
+                document.body.classList.add('is-mobile');
+            }
         });
     </script>
 </body>
