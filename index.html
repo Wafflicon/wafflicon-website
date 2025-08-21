@@ -151,10 +151,13 @@
             display: none;
             min-height: 100vh;
             animation: fadeIn 0.5s ease;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .page.active {
             display: block;
+            opacity: 1;
         }
 
         /* ========== HOMEPAGE ========== */
@@ -696,14 +699,14 @@
     <div class="main-website" id="mainWebsite">
         
         <!-- HOME PAGE -->
-        <section id="home" class="page active">
+        <section id="home" class="page active" style="display: block;">
             <h1 class="home-logo">WAFFLICON</h1>
             <nav class="home-menu">
-                <a href="#" class="home-menu-item" onclick="showPage('about')">About</a>
-                <a href="#" class="home-menu-item" onclick="showPage('games')">Games</a>
-                <a href="#" class="home-menu-item" onclick="showPage('merch')">Merch</a>
-                <a href="#" class="home-menu-item" onclick="showPage('portfolio')">Portfolio</a>
-                <a href="#" class="home-menu-item" onclick="showPage('contact')">Contact</a>
+                <a href="#" class="home-menu-item" onclick="showPage('about'); return false;">About</a>
+                <a href="#" class="home-menu-item" onclick="showPage('games'); return false;">Games</a>
+                <a href="#" class="home-menu-item" onclick="showPage('merch'); return false;">Merch</a>
+                <a href="#" class="home-menu-item" onclick="showPage('portfolio'); return false;">Portfolio</a>
+                <a href="#" class="home-menu-item" onclick="showPage('contact'); return false;">Contact</a>
             </nav>
             <div class="socials-container">
                 <a href="https://twitter.com" target="_blank" class="social-icon" title="Twitter">X</a>
@@ -719,12 +722,12 @@
             <!-- Top Navigation -->
             <nav class="top-nav">
                 <ul class="nav-items">
-                    <li><a href="#" onclick="showPage('home')">Home</a></li>
-                    <li><a href="#" onclick="showPage('about')" class="active">About</a></li>
-                    <li><a href="#" onclick="showPage('games')">Games</a></li>
-                    <li><a href="#" onclick="showPage('merch')">Merch</a></li>
-                    <li><a href="#" onclick="showPage('portfolio')">Portfolio</a></li>
-                    <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                    <li><a href="#" onclick="showPage('home'); return false;">Home</a></li>
+                    <li><a href="#" onclick="showPage('about'); return false;" class="active">About</a></li>
+                    <li><a href="#" onclick="showPage('games'); return false;">Games</a></li>
+                    <li><a href="#" onclick="showPage('merch'); return false;">Merch</a></li>
+                    <li><a href="#" onclick="showPage('portfolio'); return false;">Portfolio</a></li>
+                    <li><a href="#" onclick="showPage('contact'); return false;">Contact</a></li>
                 </ul>
             </nav>
             
@@ -760,12 +763,12 @@
         <section id="games" class="page">
             <nav class="top-nav">
                 <ul class="nav-items">
-                    <li><a href="#" onclick="showPage('home')">Home</a></li>
-                    <li><a href="#" onclick="showPage('about')">About</a></li>
-                    <li><a href="#" onclick="showPage('games')" class="active">Games</a></li>
-                    <li><a href="#" onclick="showPage('merch')">Merch</a></li>
-                    <li><a href="#" onclick="showPage('portfolio')">Portfolio</a></li>
-                    <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                    <li><a href="#" onclick="showPage('home'); return false;">Home</a></li>
+                    <li><a href="#" onclick="showPage('about'); return false;">About</a></li>
+                    <li><a href="#" onclick="showPage('games'); return false;" class="active">Games</a></li>
+                    <li><a href="#" onclick="showPage('merch'); return false;">Merch</a></li>
+                    <li><a href="#" onclick="showPage('portfolio'); return false;">Portfolio</a></li>
+                    <li><a href="#" onclick="showPage('contact'); return false;">Contact</a></li>
                 </ul>
             </nav>
             
@@ -846,12 +849,12 @@
         <section id="merch" class="page">
             <nav class="top-nav">
                 <ul class="nav-items">
-                    <li><a href="#" onclick="showPage('home')">Home</a></li>
-                    <li><a href="#" onclick="showPage('about')">About</a></li>
-                    <li><a href="#" onclick="showPage('games')">Games</a></li>
-                    <li><a href="#" onclick="showPage('merch')" class="active">Merch</a></li>
-                    <li><a href="#" onclick="showPage('portfolio')">Portfolio</a></li>
-                    <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                    <li><a href="#" onclick="showPage('home'); return false;">Home</a></li>
+                    <li><a href="#" onclick="showPage('about'); return false;">About</a></li>
+                    <li><a href="#" onclick="showPage('games'); return false;">Games</a></li>
+                    <li><a href="#" onclick="showPage('merch'); return false;" class="active">Merch</a></li>
+                    <li><a href="#" onclick="showPage('portfolio'); return false;">Portfolio</a></li>
+                    <li><a href="#" onclick="showPage('contact'); return false;">Contact</a></li>
                 </ul>
             </nav>
             
@@ -982,12 +985,12 @@
         <section id="portfolio" class="page">
             <nav class="top-nav">
                 <ul class="nav-items">
-                    <li><a href="#" onclick="showPage('home')">Home</a></li>
-                    <li><a href="#" onclick="showPage('about')">About</a></li>
-                    <li><a href="#" onclick="showPage('games')">Games</a></li>
-                    <li><a href="#" onclick="showPage('merch')">Merch</a></li>
-                    <li><a href="#" onclick="showPage('portfolio')" class="active">Portfolio</a></li>
-                    <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                    <li><a href="#" onclick="showPage('home'); return false;">Home</a></li>
+                    <li><a href="#" onclick="showPage('about'); return false;">About</a></li>
+                    <li><a href="#" onclick="showPage('games'); return false;">Games</a></li>
+                    <li><a href="#" onclick="showPage('merch'); return false;">Merch</a></li>
+                    <li><a href="#" onclick="showPage('portfolio'); return false;" class="active">Portfolio</a></li>
+                    <li><a href="#" onclick="showPage('contact'); return false;">Contact</a></li>
                 </ul>
             </nav>
             
@@ -1054,12 +1057,12 @@
         <section id="contact" class="page">
             <nav class="top-nav">
                 <ul class="nav-items">
-                    <li><a href="#" onclick="showPage('home')">Home</a></li>
-                    <li><a href="#" onclick="showPage('about')">About</a></li>
-                    <li><a href="#" onclick="showPage('games')">Games</a></li>
-                    <li><a href="#" onclick="showPage('merch')">Merch</a></li>
-                    <li><a href="#" onclick="showPage('portfolio')">Portfolio</a></li>
-                    <li><a href="#" onclick="showPage('contact')" class="active">Contact</a></li>
+                    <li><a href="#" onclick="showPage('home'); return false;">Home</a></li>
+                    <li><a href="#" onclick="showPage('about'); return false;">About</a></li>
+                    <li><a href="#" onclick="showPage('games'); return false;">Games</a></li>
+                    <li><a href="#" onclick="showPage('merch'); return false;">Merch</a></li>
+                    <li><a href="#" onclick="showPage('portfolio'); return false;">Portfolio</a></li>
+                    <li><a href="#" onclick="showPage('contact'); return false;" class="active">Contact</a></li>
                 </ul>
             </nav>
             
@@ -1117,23 +1120,34 @@
                 setTimeout(() => {
                     splashScreen.style.display = 'none';
                     mainWebsite.classList.add('active');
-                    showPage('home');
+                    // Ensure home page is shown
+                    const homePage = document.getElementById('home');
+                    if (homePage) {
+                        homePage.style.display = 'block';
+                        homePage.classList.add('active');
+                    }
                 }, 800);
             });
         });
 
         // ========== PAGE NAVIGATION ==========
         function showPage(pageId) {
+            console.log('Navigating to:', pageId); // Debug log
+            
             // Hide all pages
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => {
                 page.classList.remove('active');
+                page.style.display = 'none';
             });
             
             // Show selected page
             const selectedPage = document.getElementById(pageId);
             if (selectedPage) {
-                selectedPage.classList.add('active');
+                selectedPage.style.display = 'block';
+                setTimeout(() => {
+                    selectedPage.classList.add('active');
+                }, 10);
             }
             
             // Update active nav links
@@ -1141,23 +1155,20 @@
             navLinks.forEach(link => {
                 link.classList.remove('active');
                 const linkText = link.textContent.toLowerCase();
-                if (linkText === pageId || 
-                    (linkText === 'home' && pageId === 'home') ||
-                    (linkText === 'about' && pageId === 'about') ||
-                    (linkText === 'games' && pageId === 'games') ||
-                    (linkText === 'merch' && pageId === 'merch') ||
-                    (linkText === 'portfolio' && pageId === 'portfolio') ||
-                    (linkText === 'contact' && pageId === 'contact')) {
+                if (linkText === pageId) {
                     link.classList.add('active');
                 }
             });
             
             // Initialize card scrolling for games/merch pages
             if (pageId === 'games' || pageId === 'merch') {
-                initCardScroll(pageId);
+                setTimeout(() => {
+                    initCardScroll(pageId);
+                }, 100);
             }
             
             window.scrollTo(0, 0);
+            return false; // Prevent default link behavior
         }
 
         // ========== CARD SCROLLING ==========
@@ -1236,6 +1247,17 @@
                 
                 icon.addEventListener('mouseleave', function() {
                     this.style.animation = '';
+                });
+            });
+        });
+
+        // ========== INITIALIZE NAVIGATION ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add event listeners to all navigation links
+            const allNavLinks = document.querySelectorAll('a[onclick*="showPage"]');
+            allNavLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
                 });
             });
         });
