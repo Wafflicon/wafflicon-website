@@ -200,15 +200,16 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            height: 100dvh; /* Dynamic viewport height for mobile browsers */
+            min-height: 100vh;
+            min-height: 100dvh; /* Dynamic viewport height for mobile browsers */
             background: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
             padding: 2rem;
+            text-align: center;
         }
 
         .home-logo {
             font-family: 'Montserrat', sans-serif;
-            font-size: 8rem;
+            font-size: clamp(3rem, 10vw, 8rem);
             font-weight: 900;
             letter-spacing: -3px;
             margin-bottom: 3rem;
@@ -352,9 +353,17 @@
 
         .card-scroll-container {
             position: relative;
-            height: calc(100vh - 80px);
+            height: 400px;
             display: flex;
             align-items: center;
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+
+        .card-scroll-track {
+            position: relative;
+            width: 100%;
+            height: 100%;
             overflow: hidden;
         }
 
@@ -362,16 +371,36 @@
             display: flex;
             gap: 2rem;
             padding: 0 2rem;
-            animation: scroll 30s linear infinite;
+            position: absolute;
+            left: 0;
+            transition: transform 0.5s ease;
         }
 
-        .card-scroll-wrapper.paused {
-            animation-play-state: paused;
+        .card-scroll-wrapper.no-transition {
+            transition: none;
         }
 
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        /* Full Grid Display Below Scrolling Cards */
+        .full-grid-section {
+            padding: 2rem;
+            background: var(--white);
+            margin: 2rem;
+            border-radius: 20px;
+        }
+
+        .full-grid-title {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--black);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .full-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
         }
 
         .game-card, .merch-card {
@@ -450,6 +479,9 @@
             cursor: pointer;
             transition: all 0.3s ease;
             z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .scroll-button:hover {
@@ -685,13 +717,66 @@
             background: var(--orange);
         }
 
-        /* ========== RESPONSIVE ========== */
+        /* ========== RESPONSIVE SCALING ========== */
+        html {
+            font-size: 16px;
+        }
+        
+        @media (max-width: 1920px) {
+            html { font-size: 16px; }
+        }
+        
+        @media (max-width: 1440px) {
+            html { font-size: 15px; }
+        }
+        
+        @media (max-width: 1200px) {
+            html { font-size: 14px; }
+        }
+        
+        @media (max-width: 992px) {
+            html { font-size: 14px; }
+        }
+        
+        @media (max-width: 768px) {
+            html { font-size: 14px; }
+        }
+        
+        @media (max-width: 480px) {
+            html { font-size: 13px; }
+        }
+
+        /* Use rem units for scalable sizing */
+        .home-menu-item {
+            background: var(--black);
+            color: var(--white);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            font-size: 1rem;
+        }
+
+        .social-icon {
+            width: 3.125rem;
+            height: 3.125rem;
+            background: var(--black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
         /* Tablet Styles */
         @media (max-width: 1024px) {
-            .home-logo {
-                font-size: 6rem;
-            }
-
             .card-scroll-wrapper {
                 gap: 1.5rem;
             }
@@ -702,6 +787,10 @@
 
             .portfolio-grid {
                 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .full-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             }
         }
 
@@ -767,6 +856,10 @@
 
             .nav-items.mobile-active {
                 display: flex;
+            }
+
+            .mobile-nav-close.mobile-active {
+                display: block;
             }
 
             .nav-items a {
@@ -892,8 +985,10 @@
         @media (max-width: 480px) {
             /* Splash */
             .splash-logo {
-                width: 150px;
-                height: 150px;
+                width: 60vw;
+                max-width: 150px;
+                height: 60vw;
+                max-height: 150px;
             }
 
             .splash-hint {
@@ -902,7 +997,7 @@
 
             /* Homepage */
             .home-logo {
-                font-size: 2.5rem;
+                font-size: clamp(2rem, 15vw, 3rem);
             }
 
             #home {
@@ -939,12 +1034,16 @@
             }
 
             /* Cards */
+            .card-scroll-container {
+                height: 300px;
+            }
+
             .game-card, .merch-card {
                 min-width: 200px;
             }
 
             .card-image {
-                height: 200px;
+                height: 180px;
             }
 
             .card-title {
@@ -953,6 +1052,11 @@
 
             .card-price {
                 font-size: 1.2rem;
+            }
+
+            /* Full Grid */
+            .full-grid-section {
+                padding: 1rem;
             }
 
             /* Contact */
@@ -1111,14 +1215,14 @@
             <!-- Top Navigation -->
             <nav class="top-nav">
                 <button class="mobile-nav-toggle" onclick="toggleMobileNav()">☰</button>
-                <ul class="nav-items" id="navItems">
+                <ul class="nav-items">
                     <button class="mobile-nav-close" onclick="toggleMobileNav()">×</button>
-                    <li><a href="#" onclick="showPage('home'); toggleMobileNav(); return false;">Home</a></li>
-                    <li><a href="#" onclick="showPage('about'); toggleMobileNav(); return false;" class="active">About</a></li>
-                    <li><a href="#" onclick="showPage('games'); toggleMobileNav(); return false;">Games</a></li>
-                    <li><a href="#" onclick="showPage('merch'); toggleMobileNav(); return false;">Merch</a></li>
-                    <li><a href="#" onclick="showPage('portfolio'); toggleMobileNav(); return false;">Portfolio</a></li>
-                    <li><a href="#" onclick="showPage('contact'); toggleMobileNav(); return false;">Contact</a></li>
+                    <li><a href="#" onclick="showPage('home'); return false;">Home</a></li>
+                    <li><a href="#" onclick="showPage('about'); return false;" class="active">About</a></li>
+                    <li><a href="#" onclick="showPage('games'); return false;">Games</a></li>
+                    <li><a href="#" onclick="showPage('merch'); return false;">Merch</a></li>
+                    <li><a href="#" onclick="showPage('portfolio'); return false;">Portfolio</a></li>
+                    <li><a href="#" onclick="showPage('contact'); return false;">Contact</a></li>
                 </ul>
             </nav>
             
@@ -1174,8 +1278,58 @@
                     <button class="scroll-button left" onclick="scrollCards('left', 'games')">‹</button>
                     <button class="scroll-button right" onclick="scrollCards('right', 'games')">›</button>
                     
-                    <div class="card-scroll-wrapper" id="gamesScroll">
-                        <!-- Duplicate cards for infinite scroll effect -->
+                    <div class="card-scroll-track">
+                        <div class="card-scroll-wrapper" id="gamesScroll">
+                            <div class="game-card" data-index="0">
+                                <div class="card-image"></div>
+                                <div class="card-info">
+                                    <h3 class="card-title">Grid Quest</h3>
+                                    <p class="card-description">A puzzle-adventure game featuring waffle-grid mechanics and challenging levels.</p>
+                                </div>
+                            </div>
+                            <div class="game-card" data-index="1">
+                                <div class="card-image" style="background: linear-gradient(135deg, #667eea, #764ba2);"></div>
+                                <div class="card-info">
+                                    <h3 class="card-title">Code Runner</h3>
+                                    <p class="card-description">Navigate through landscapes made of code in this endless runner.</p>
+                                </div>
+                            </div>
+                            <div class="game-card" data-index="2">
+                                <div class="card-image" style="background: linear-gradient(135deg, #f093fb, #f5576c);"></div>
+                                <div class="card-info">
+                                    <h3 class="card-title">Waffle Kingdom</h3>
+                                    <p class="card-description">Build and manage your own waffle empire in this strategy game.</p>
+                                </div>
+                            </div>
+                            <div class="game-card" data-index="3">
+                                <div class="card-image" style="background: linear-gradient(135deg, #4facfe, #00f2fe);"></div>
+                                <div class="card-info">
+                                    <h3 class="card-title">Debug Dungeon</h3>
+                                    <p class="card-description">A roguelike where each room is a programming challenge.</p>
+                                </div>
+                            </div>
+                            <div class="game-card" data-index="4">
+                                <div class="card-image" style="background: linear-gradient(135deg, #43e97b, #38f9d7);"></div>
+                                <div class="card-info">
+                                    <h3 class="card-title">Pixel Forge</h3>
+                                    <p class="card-description">Create and share pixel art in this creative sandbox game.</p>
+                                </div>
+                            </div>
+                            <div class="game-card" data-index="5">
+                                <div class="card-image" style="background: linear-gradient(135deg, #f6d365, #fda085);"></div>
+                                <div class="card-info">
+                                    <h3 class="card-title">Rhythm Code</h3>
+                                    <p class="card-description">Type to the beat in this coding rhythm game.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Full Grid Display -->
+                <div class="full-grid-section">
+                    <h2 class="full-grid-title">All Games</h2>
+                    <div class="full-grid">
                         <div class="game-card">
                             <div class="card-image"></div>
                             <div class="card-info">
@@ -1204,33 +1358,18 @@
                                 <p class="card-description">A roguelike where each room is a programming challenge.</p>
                             </div>
                         </div>
-                        <!-- Duplicate set for seamless loop -->
                         <div class="game-card">
-                            <div class="card-image"></div>
+                            <div class="card-image" style="background: linear-gradient(135deg, #43e97b, #38f9d7);"></div>
                             <div class="card-info">
-                                <h3 class="card-title">Grid Quest</h3>
-                                <p class="card-description">A puzzle-adventure game featuring waffle-grid mechanics and challenging levels.</p>
+                                <h3 class="card-title">Pixel Forge</h3>
+                                <p class="card-description">Create and share pixel art in this creative sandbox game.</p>
                             </div>
                         </div>
                         <div class="game-card">
-                            <div class="card-image" style="background: linear-gradient(135deg, #667eea, #764ba2);"></div>
+                            <div class="card-image" style="background: linear-gradient(135deg, #f6d365, #fda085);"></div>
                             <div class="card-info">
-                                <h3 class="card-title">Code Runner</h3>
-                                <p class="card-description">Navigate through landscapes made of code in this endless runner.</p>
-                            </div>
-                        </div>
-                        <div class="game-card">
-                            <div class="card-image" style="background: linear-gradient(135deg, #f093fb, #f5576c);"></div>
-                            <div class="card-info">
-                                <h3 class="card-title">Waffle Kingdom</h3>
-                                <p class="card-description">Build and manage your own waffle empire in this strategy game.</p>
-                            </div>
-                        </div>
-                        <div class="game-card">
-                            <div class="card-image" style="background: linear-gradient(135deg, #4facfe, #00f2fe);"></div>
-                            <div class="card-info">
-                                <h3 class="card-title">Debug Dungeon</h3>
-                                <p class="card-description">A roguelike where each room is a programming challenge.</p>
+                                <h3 class="card-title">Rhythm Code</h3>
+                                <p class="card-description">Type to the beat in this coding rhythm game.</p>
                             </div>
                         </div>
                     </div>
@@ -1262,8 +1401,91 @@
                     <button class="scroll-button left" onclick="scrollCards('left', 'merch')">‹</button>
                     <button class="scroll-button right" onclick="scrollCards('right', 'merch')">›</button>
                     
-                    <div class="card-scroll-wrapper" id="merchScroll">
-                        <!-- Merch cards with prices -->
+                    <div class="card-scroll-track">
+                        <div class="card-scroll-wrapper" id="merchScroll">
+                            <div class="merch-card" data-index="0">
+                                <div class="card-image" style="background: linear-gradient(135deg, #ee9ca7, #ffdde1);"></div>
+                                <div class="card-info">
+                                    <h3 class="card-title">WAFFLICON Classic Tee</h3>
+                                    <p class="card-price">$24.99</p>
+                                    <p class="card-description">Premium cotton t-shirt with our iconic logo.</p>
+                                    <div class="size-options">
+                                        <button class="size-btn">S</button>
+                                        <button class="size-btn">M</button>
+                                        <button class="size-btn">L</button>
+                                        <button class="size-btn">XL</button>
+                                        <button class="size-btn">XXL</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="merch-card" data-index="1">
+                                <div class="card-image" style="background: linear-gradient(135deg, #a8edea, #fed6e3);"></div>
+                                <div class="card-info">
+                                    <h3 class="card-title">Code Hoodie</h3>
+                                    <p class="card-price">$49.99</p>
+                                    <p class="card-description">Comfortable hoodie for those coding sessions.</p>
+                                    <div class="size-options">
+                                        <button class="size-btn">S</button>
+                                        <button class="size-btn">M</button>
+                                        <button class="size-btn">L</button>
+                                        <button class="size-btn">XL</button>
+                                        <button class="size-btn">XXL</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="merch-card" data-index="2">
+                                <div class="card-image" style="background: linear-gradient(135deg, #d299c2, #fef9d7);"></div>
+                                <div class="card-info">
+                                    <h3 class="card-title">Developer Cap</h3>
+                                    <p class="card-price">$19.99</p>
+                                    <p class="card-description">Adjustable cap with embroidered logo.</p>
+                                    <div class="size-options">
+                                        <button class="size-btn">One Size</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="merch-card" data-index="3">
+                                <div class="card-image" style="background: linear-gradient(135deg, #89f7fe, #66a6ff);"></div>
+                                <div class="card-info">
+                                    <h3 class="card-title">Waffle Mug</h3>
+                                    <p class="card-price">$14.99</p>
+                                    <p class="card-description">Ceramic mug for your morning coffee.</p>
+                                    <div class="size-options">
+                                        <button class="size-btn">11oz</button>
+                                        <button class="size-btn">15oz</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="merch-card" data-index="4">
+                                <div class="card-image" style="background: linear-gradient(135deg, #fddb92, #d1fdff);"></div>
+                                <div class="card-info">
+                                    <h3 class="card-title">Sticker Pack</h3>
+                                    <p class="card-price">$9.99</p>
+                                    <p class="card-description">Set of 10 vinyl stickers with various designs.</p>
+                                    <div class="size-options">
+                                        <button class="size-btn">Pack</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="merch-card" data-index="5">
+                                <div class="card-image" style="background: linear-gradient(135deg, #e0c3fc, #8ec5fc);"></div>
+                                <div class="card-info">
+                                    <h3 class="card-title">Tech Backpack</h3>
+                                    <p class="card-price">$79.99</p>
+                                    <p class="card-description">Durable backpack with laptop compartment.</p>
+                                    <div class="size-options">
+                                        <button class="size-btn">One Size</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Full Grid Display -->
+                <div class="full-grid-section">
+                    <h2 class="full-grid-title">All Products</h2>
+                    <div class="full-grid">
                         <div class="merch-card">
                             <div class="card-image" style="background: linear-gradient(135deg, #ee9ca7, #ffdde1);"></div>
                             <div class="card-info">
@@ -1317,29 +1539,31 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Duplicate for seamless scroll -->
                         <div class="merch-card">
-                            <div class="card-image" style="background: linear-gradient(135deg, #ee9ca7, #ffdde1);"></div>
+                            <div class="card-image" style="background: linear-gradient(135deg, #fddb92, #d1fdff);"></div>
                             <div class="card-info">
-                                <h3 class="card-title">WAFFLICON Classic Tee</h3>
-                                <p class="card-price">$24.99</p>
-                                <p class="card-description">Premium cotton t-shirt with our iconic logo.</p>
+                                <h3 class="card-title">Sticker Pack</h3>
+                                <p class="card-price">$9.99</p>
+                                <p class="card-description">Set of 10 vinyl stickers with various designs.</p>
                                 <div class="size-options">
-                                    <button class="size-btn">S</button>
-                                    <button class="size-btn">M</button>
-                                    <button class="size-btn">L</button>
-                                    <button class="size-btn">XL</button>
-                                    <button class="size-btn">XXL</button>
+                                    <button class="size-btn">Pack</button>
                                 </div>
                             </div>
                         </div>
                         <div class="merch-card">
-                            <div class="card-image" style="background: linear-gradient(135deg, #a8edea, #fed6e3);"></div>
+                            <div class="card-image" style="background: linear-gradient(135deg, #e0c3fc, #8ec5fc);"></div>
                             <div class="card-info">
-                                <h3 class="card-title">Code Hoodie</h3>
-                                <p class="card-price">$49.99</p>
-                                <p class="card-description">Comfortable hoodie for those coding sessions.</p>
+                                <h3 class="card-title">Tech Backpack</h3>
+                                <p class="card-price">$79.99</p>
+                                <p class="card-description">Durable backpack with laptop compartment.</p>
                                 <div class="size-options">
+                                    <button class="size-btn">One Size</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><div class="size-options">
                                     <button class="size-btn">S</button>
                                     <button class="size-btn">M</button>
                                     <button class="size-btn">L</button>
@@ -1531,22 +1755,30 @@
 
         // ========== MOBILE NAVIGATION TOGGLE ==========
         function toggleMobileNav() {
-            const navItems = document.getElementById('navItems');
-            if (navItems) {
-                navItems.classList.toggle('mobile-active');
-            }
+            const navItems = document.querySelectorAll('.nav-items');
+            
+            // Toggle all nav-items elements (there's one per page)
+            navItems.forEach(nav => {
+                if (nav.classList.contains('mobile-active')) {
+                    nav.classList.remove('mobile-active');
+                } else {
+                    nav.classList.add('mobile-active');
+                }
+            });
         }
 
         // Close mobile nav when clicking outside
         document.addEventListener('click', function(e) {
-            const navItems = document.getElementById('navItems');
+            const navItems = document.querySelectorAll('.nav-items');
             const mobileToggle = document.querySelector('.mobile-nav-toggle');
             
-            if (navItems && navItems.classList.contains('mobile-active')) {
-                if (!navItems.contains(e.target) && !mobileToggle.contains(e.target)) {
-                    navItems.classList.remove('mobile-active');
+            navItems.forEach(nav => {
+                if (nav && nav.classList.contains('mobile-active')) {
+                    if (!nav.contains(e.target) && (!mobileToggle || !mobileToggle.contains(e.target))) {
+                        nav.classList.remove('mobile-active');
+                    }
                 }
-            }
+            });
         });
 
         // ========== PAGE NAVIGATION ==========
@@ -1569,14 +1801,19 @@
                 }, 10);
             }
             
-            // Update active nav links
-            const navLinks = document.querySelectorAll('.nav-items a');
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                const linkText = link.textContent.toLowerCase();
-                if (linkText === pageId) {
-                    link.classList.add('active');
-                }
+            // Update active nav links across all nav elements
+            document.querySelectorAll('.nav-items').forEach(navGroup => {
+                // Close mobile menu if open
+                navGroup.classList.remove('mobile-active');
+                
+                // Update active states
+                navGroup.querySelectorAll('a').forEach(link => {
+                    link.classList.remove('active');
+                    const linkText = link.textContent.toLowerCase();
+                    if (linkText === pageId) {
+                        link.classList.add('active');
+                    }
+                });
             });
             
             // Initialize card scrolling for games/merch pages
@@ -1590,96 +1827,130 @@
             return false; // Prevent default link behavior
         }
 
-        // ========== CARD SCROLLING WITH TOUCH SUPPORT ==========
+        // ========== CARD SCROLLING WITH INFINITE LOOP ==========
+        let gameScrollPosition = 0;
+        let merchScrollPosition = 0;
+        let isAutoScrolling = true;
+        let autoScrollInterval;
+
         function initCardScroll(pageType) {
             const wrapper = document.getElementById(pageType === 'games' ? 'gamesScroll' : 'merchScroll');
             const cards = wrapper.querySelectorAll(pageType === 'games' ? '.game-card' : '.merch-card');
             
-            let isDown = false;
-            let startX;
-            let scrollLeft;
-            let startY;
+            // Clone cards for infinite scroll
+            const track = wrapper.parentElement;
+            wrapper.innerHTML = wrapper.innerHTML + wrapper.innerHTML; // Duplicate cards
             
-            // Mouse events
+            // Start auto-scroll
+            startAutoScroll(pageType);
+            
+            // Pause on hover
             wrapper.addEventListener('mouseenter', () => {
-                wrapper.classList.add('paused');
+                stopAutoScroll();
             });
             
             wrapper.addEventListener('mouseleave', () => {
-                wrapper.classList.remove('paused');
+                startAutoScroll(pageType);
             });
             
-            // Touch events for mobile swipe
+            // Touch support
+            let startX = 0;
+            let currentX = 0;
+            let isDragging = false;
+            
             wrapper.addEventListener('touchstart', (e) => {
-                isDown = true;
-                wrapper.classList.add('paused');
-                startX = e.touches[0].pageX - wrapper.offsetLeft;
-                startY = e.touches[0].pageY;
-                scrollLeft = wrapper.scrollLeft;
-                wrapper.style.animation = 'none';
+                isDragging = true;
+                startX = e.touches[0].clientX;
+                stopAutoScroll();
             });
             
             wrapper.addEventListener('touchmove', (e) => {
-                if (!isDown) return;
+                if (!isDragging) return;
                 e.preventDefault();
-                const x = e.touches[0].pageX - wrapper.offsetLeft;
-                const y = e.touches[0].pageY;
-                const walkX = (x - startX) * 2;
-                const walkY = Math.abs(y - startY);
-                
-                // Only scroll horizontally if the movement is more horizontal than vertical
-                if (Math.abs(walkX) > walkY) {
-                    wrapper.scrollLeft = scrollLeft - walkX;
-                }
+                currentX = e.touches[0].clientX;
+                const diff = currentX - startX;
+                const currentPosition = pageType === 'games' ? gameScrollPosition : merchScrollPosition;
+                updateScrollPosition(pageType, currentPosition + diff);
             });
             
             wrapper.addEventListener('touchend', () => {
-                isDown = false;
-                setTimeout(() => {
-                    wrapper.classList.remove('paused');
-                    wrapper.style.animation = '';
-                }, 100);
-            });
-            
-            // Pause animation when hovering over individual cards
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    wrapper.classList.add('paused');
-                });
-                
-                card.addEventListener('mouseleave', () => {
-                    wrapper.classList.remove('paused');
-                });
-                
-                // Touch events for mobile
-                card.addEventListener('touchstart', () => {
-                    wrapper.classList.add('paused');
-                });
+                isDragging = false;
+                startAutoScroll(pageType);
             });
         }
 
-        function scrollCards(direction, type) {
-            const wrapper = document.getElementById(type === 'games' ? 'gamesScroll' : 'merchScroll');
-            const cardWidth = window.innerWidth < 768 ? 266 : 332; // Adjust for mobile
-            const currentTransform = getComputedStyle(wrapper).transform;
-            let currentX = 0;
+        function startAutoScroll(pageType) {
+            if (!isAutoScrolling) return;
             
-            if (currentTransform !== 'none') {
-                const matrix = new DOMMatrix(currentTransform);
-                currentX = matrix.m41;
-            }
+            autoScrollInterval = setInterval(() => {
+                const wrapper = document.getElementById(pageType === 'games' ? 'gamesScroll' : 'merchScroll');
+                if (!wrapper) return;
+                
+                const currentPosition = pageType === 'games' ? gameScrollPosition : merchScrollPosition;
+                const newPosition = currentPosition - 1;
+                
+                updateScrollPosition(pageType, newPosition);
+                
+                // Reset position for infinite loop
+                const cardWidth = 332;
+                const totalCards = wrapper.children.length / 2; // Half are duplicates
+                const resetPoint = -(cardWidth * totalCards);
+                
+                if (newPosition <= resetPoint) {
+                    wrapper.classList.add('no-transition');
+                    updateScrollPosition(pageType, 0);
+                    setTimeout(() => {
+                        wrapper.classList.remove('no-transition');
+                    }, 50);
+                }
+            }, 30);
+        }
+
+        function stopAutoScroll() {
+            clearInterval(autoScrollInterval);
+        }
+
+        function updateScrollPosition(pageType, position) {
+            const wrapper = document.getElementById(pageType === 'games' ? 'gamesScroll' : 'merchScroll');
+            wrapper.style.transform = `translateX(${position}px)`;
             
-            if (direction === 'left') {
-                wrapper.style.transform = `translateX(${currentX + cardWidth}px)`;
+            if (pageType === 'games') {
+                gameScrollPosition = position;
             } else {
-                wrapper.style.transform = `translateX(${currentX - cardWidth}px)`;
+                merchScrollPosition = position;
+            }
+        }
+
+        function scrollCards(direction, type) {
+            stopAutoScroll();
+            
+            const wrapper = document.getElementById(type === 'games' ? 'gamesScroll' : 'merchScroll');
+            const cardWidth = window.innerWidth < 768 ? 266 : 332;
+            const currentPosition = type === 'games' ? gameScrollPosition : merchScrollPosition;
+            
+            let newPosition;
+            if (direction === 'left') {
+                newPosition = currentPosition + cardWidth;
+            } else {
+                newPosition = currentPosition - cardWidth;
             }
             
-            // Temporarily pause the animation
-            wrapper.style.animation = 'none';
+            // Handle boundaries
+            const totalCards = wrapper.children.length / 2;
+            const maxScroll = -(cardWidth * totalCards);
+            
+            if (newPosition > 0) {
+                newPosition = maxScroll;
+            } else if (newPosition < maxScroll) {
+                newPosition = 0;
+            }
+            
+            updateScrollPosition(type, newPosition);
+            
+            // Resume auto-scroll after manual interaction
             setTimeout(() => {
-                wrapper.style.animation = '';
-            }, 50);
+                startAutoScroll(type);
+            }, 3000);
         }
 
         // ========== CONTACT FORM ==========
