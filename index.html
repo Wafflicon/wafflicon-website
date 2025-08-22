@@ -125,6 +125,8 @@
         }
 
         .nav-items {
+            z-index: 2000;
+
             display: flex;
             gap: 2rem;
             list-style: none;
@@ -196,6 +198,12 @@
 
         /* ========== HOMEPAGE ========== */
         #home {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -840,6 +848,8 @@
             }
 
             .nav-items {
+            z-index: 2000;
+
                 display: none;
                 position: fixed;
                 top: 0;
@@ -1001,6 +1011,12 @@
             }
 
             #home {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+
                 padding: 2rem 1rem;
             }
 
@@ -1151,6 +1167,12 @@
         /* Landscape Mobile Adjustments */
         @media (max-height: 600px) and (orientation: landscape) {
             #home {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+
                 min-height: auto;
                 padding: 2rem;
             }
@@ -1220,7 +1242,7 @@
                     <li><a href="#" onclick="showPage('home'); return false;">Home</a></li>
                     <li><a href="#" onclick="showPage('about'); return false;" class="active">About</a></li>
                     <li><a href="#" onclick="showPage('games'); return false;">Games</a></li>
-                    <li><a href="#" onclick="showPage('merch'); return false;">Merch</a></li>
+                    
                     <li><a href="#" onclick="showPage('portfolio'); return false;">Portfolio</a></li>
                     <li><a href="#" onclick="showPage('contact'); return false;">Contact</a></li>
                 </ul>
@@ -1250,6 +1272,7 @@
                         <h2>Our Story</h2>
                         <p>Founded with a passion for blending art and technology, WAFFLICON represents the structured yet creative nature of development - like a waffle grid, organized but infinitely customizable.</p>
                     </div>
+                -->
                 </div>
             </div>
         </section>
@@ -1263,7 +1286,7 @@
                     <li><a href="#" onclick="showPage('home'); toggleMobileNav(); return false;">Home</a></li>
                     <li><a href="#" onclick="showPage('about'); toggleMobileNav(); return false;">About</a></li>
                     <li><a href="#" onclick="showPage('games'); toggleMobileNav(); return false;" class="active">Games</a></li>
-                    <li><a href="#" onclick="showPage('merch'); toggleMobileNav(); return false;">Merch</a></li>
+                    
                     <li><a href="#" onclick="showPage('portfolio'); toggleMobileNav(); return false;">Portfolio</a></li>
                     <li><a href="#" onclick="showPage('contact'); toggleMobileNav(); return false;">Contact</a></li>
                 </ul>
@@ -1326,7 +1349,8 @@
                     </div>
                 </div>
 
-                <!-- Full Grid Display -->
+                <!-- Full Grid Display (Removed for Games Page Fix) -->
+<!--
                 <div class="full-grid-section">
                     <h2 class="full-grid-title">All Games</h2>
                     <div class="full-grid">
@@ -1373,6 +1397,7 @@
                             </div>
                         </div>
                     </div>
+                -->
                 </div>
             </div>
         </section>
@@ -1482,7 +1507,8 @@
                     </div>
                 </div>
 
-                <!-- Full Grid Display -->
+                <!-- Full Grid Display (Removed for Games Page Fix) -->
+<!--
                 <div class="full-grid-section">
                     <h2 class="full-grid-title">All Products</h2>
                     <div class="full-grid">
@@ -1596,6 +1622,7 @@
                             </div>
                         </div>
                     </div>
+                -->
                 </div>
             </div>
         </section>
@@ -1609,7 +1636,7 @@
                     <li><a href="#" onclick="showPage('home'); toggleMobileNav(); return false;">Home</a></li>
                     <li><a href="#" onclick="showPage('about'); toggleMobileNav(); return false;">About</a></li>
                     <li><a href="#" onclick="showPage('games'); toggleMobileNav(); return false;">Games</a></li>
-                    <li><a href="#" onclick="showPage('merch'); toggleMobileNav(); return false;">Merch</a></li>
+                    
                     <li><a href="#" onclick="showPage('portfolio'); toggleMobileNav(); return false;" class="active">Portfolio</a></li>
                     <li><a href="#" onclick="showPage('contact'); toggleMobileNav(); return false;">Contact</a></li>
                 </ul>
@@ -1670,6 +1697,7 @@
                             </div>
                         </div>
                     </div>
+                -->
                 </div>
             </div>
         </section>
@@ -1683,7 +1711,7 @@
                     <li><a href="#" onclick="showPage('home'); toggleMobileNav(); return false;">Home</a></li>
                     <li><a href="#" onclick="showPage('about'); toggleMobileNav(); return false;">About</a></li>
                     <li><a href="#" onclick="showPage('games'); toggleMobileNav(); return false;">Games</a></li>
-                    <li><a href="#" onclick="showPage('merch'); toggleMobileNav(); return false;">Merch</a></li>
+                    
                     <li><a href="#" onclick="showPage('portfolio'); toggleMobileNav(); return false;">Portfolio</a></li>
                     <li><a href="#" onclick="showPage('contact'); toggleMobileNav(); return false;" class="active">Contact</a></li>
                 </ul>
@@ -1724,6 +1752,7 @@
                         
                         <button type="submit" class="submit-button">Send Email</button>
                     </form>
+                -->
                 </div>
             </div>
         </section>
@@ -1743,7 +1772,8 @@
                 setTimeout(() => {
                     splashScreen.style.display = 'none';
                     mainWebsite.classList.add('active');
-                    // Ensure home page is shown
+                    // Fix: Only show home page on splash exit
+                    document.querySelectorAll('.page').forEach(p=>{p.style.display='none';p.classList.remove('active');});
                     const homePage = document.getElementById('home');
                     if (homePage) {
                         homePage.style.display = 'block';
@@ -1831,6 +1861,7 @@
         let gameScrollPosition = 0;
         let merchScrollPosition = 0;
         let isAutoScrolling = true;
+        let scrollSpeed = 1; // constant speed
         let autoScrollInterval;
 
         function initCardScroll(pageType) {
@@ -1887,7 +1918,7 @@
                 if (!wrapper) return;
                 
                 const currentPosition = pageType === 'games' ? gameScrollPosition : merchScrollPosition;
-                const newPosition = currentPosition - 1;
+                const newPosition = currentPosition - scrollSpeed; // fixed smooth speed
                 
                 updateScrollPosition(pageType, newPosition);
                 
